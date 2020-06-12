@@ -30,8 +30,6 @@ After that install `xfce-polkit` and put this line into autostart.sh:
 
 ## Patches
 - [autostart](https://dwm.suckless.org/patches/autostart/)
-- [systray](https://dwm.suckless.org/patches/systray/)
-- [dualstatus](https://dwm.suckless.org/patches/dualstatus/)
 - [hide_vacant_tags](https://dwm.suckless.org/patches/hide_vacant_tags/)
 
 ### Status bar
