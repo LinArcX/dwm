@@ -3,7 +3,7 @@
 
 dwm_keyboard () {
     if [ "$IDENTIFIER" = "unicode" ]; then
-        printf "⌨  %s" "$(xkblayout-state print %s)"
+        printf "⌨ %s" "$(xkblayout-state print %s)"
     else
         printf "KEY %s" "$(xkblayout-state print %s)"
     fi
