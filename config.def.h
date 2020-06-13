@@ -28,8 +28,8 @@ static const Rule rules[] = {
 	 *	WM_NAME(STRING) = title
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
-	{ "Mpv",     NULL,       NULL,       0,            1,           -1 },
-	{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+	{ "Mpv",      NULL,       NULL,       0,            1,           -1 },
+	//{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
 };
 
 /* layout(s) */
@@ -39,9 +39,9 @@ static const int resizehints = 1;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
+	{ "[M]",      monocle },
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
-	{ "[M]",      monocle },
 };
 
 /* key definitions */
@@ -64,6 +64,7 @@ static const char *rofi_drun[] = { "rofi", "-show", "drun", "-font", "Inconsolat
 static const char *rofi_run[] = { "rofi", "-show", "run", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
 static const char *rofi_keys[] = { "rofi", "-show", "keys", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
 static const char *rofi_window[] = { "rofi", "-show", "window", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
+static const char *firefox_window[] = { "firefox"};
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -73,6 +74,7 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F2,     spawn,          {.v = rofi_run } },
 	{ MODKEY,                       XK_F3,     spawn,          {.v = rofi_keys } },
 	{ MODKEY,                       XK_F4,     spawn,          {.v = rofi_window } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = firefox_window} },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
