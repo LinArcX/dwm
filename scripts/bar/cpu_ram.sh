@@ -8,10 +8,12 @@ cpu_ram () {
     # CPU temperature
     CPU=$(cat /sys/class/thermal/thermal_zone*/temp | rev | cut -c 4- | rev | sed -n 2p)
 
-    if [ "$IDENTIFIER" = "unicode" ]; then
-        printf " %s/%s  %s" "$MEMUSED" "$MEMTOT" "$CPU"
-    else
-        printf "MEM %s/%s CPU %s" "$MEMUSED" "$MEMTOT" "$CPU"
-    fi
+    printf "CPU:%s Ram:%s/%s" "$CPU" "$MEMUSED" "$MEMTOT"
 }
 cpu_ram
+
+#if [ "$IDENTIFIER" = "unicode" ]; then
+#else
+#    printf "MEM %s/%s CPU %s" "$MEMUSED" "$MEMTOT" "$CPU"
+#fi
+#  
