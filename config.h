@@ -1,5 +1,7 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/XF86keysym.h>
+
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -56,7 +58,7 @@ static const Layout layouts[] = {
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "sh", "-c", "/home/linarcx/mis/dwm/scripts/rofi-power.sh" };
+static const char *dmenucmd[] = { "sh", "-c", "/home/linarcx/mis/dwm/scripts/power.sh" };
 static const char *termcmd[]  = { "st", NULL };
 
 static const char *rofi_drun[] = { "rofi", "-show", "drun", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
@@ -64,6 +66,10 @@ static const char *rofi_run[] = { "rofi", "-show", "run", "-font", "Inconsolata 
 static const char *rofi_keys[] = { "rofi", "-show", "keys", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
 static const char *rofi_window[] = { "rofi", "-show", "window", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
 static const char *firefox_window[] = { "firefox"};
+
+static const char *mutecmd[] = { "amixer", "-q", "sset", "Master", "toggle", NULL };
+static const char *volupcmd[] = { "amixer", "-q", "sset", "PCM", "5-", "unmute", NULL };
+static const char *voldowncmd[] = { "amixer", "-q", "sset", "PCM", "5+", "unmute", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
@@ -74,6 +80,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_F3,     spawn,          {.v = rofi_keys } },
 	{ MODKEY,                       XK_F4,     spawn,          {.v = rofi_window } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = firefox_window} },
+    { 0,            XF86XK_AudioMute,          spawn,          SHCMD("amixer set Master toggle")},
+    { 0,            XF86XK_AudioRaiseVolume,   spawn,          SHCMD("amixer set Master 5%+")},
+    { 0,            XF86XK_AudioLowerVolume,   spawn,          SHCMD("amixer set Master 5%-")},
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

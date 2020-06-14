@@ -83,7 +83,7 @@ and (re)compiling the source code.
 Bugs should be reported [here](https://github.com/LinArcX/dwm/issues) on the Github issues page.
 
 ## TODO
-- [ ] Alsa not wokring
+- [x] Alsa not wokring
 - [x] Change default layout to monocle
 
 ## Credits

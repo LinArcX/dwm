@@ -1,5 +1,4 @@
-drw.o
 dwm
+drw.o
 dwm.o
 util.o
-config.h

@@ -1,9 +1,6 @@
 #!/bin/sh
 # Dependencies: xorg-xsetroot
 
-# Import functions with "$include /route/to/module"
-# It is recommended that you place functions in the subdirectory ./bar-functions and use: . "$DIR/bar-functions/dwm_example.sh"
-
 # Store the directory the script is running from
 LOC=$(readlink -f "$0")
 DIR=$(dirname "$LOC")
@@ -13,25 +10,31 @@ DIR=$(dirname "$LOC")
 # Requires a font with adequate unicode character support
 export IDENTIFIER="unicode"
 
-# Change the charachter(s) used to seperate modules. If two are used, they will be placed at the start and end.
-export SEP="|"
-. "$DIR/bar-functions/dwm_jdate.sh"
-. "$DIR/bar-functions/dwm_date.sh"
-. "$DIR/bar-functions/dwm_time.sh"
-. "$DIR/bar-functions/dwm_alsa.sh"
-. "$DIR/bar-functions/dwm_keyboard.sh"
+. "$DIR/bar/cpu_ram.sh"
+. "$DIR/bar/du.sh"
+. "$DIR/bar/dwm_jdate.sh"
+. "$DIR/bar/date.sh"
+. "$DIR/bar/time.sh"
+. "$DIR/bar/alsa.sh"
+. "$DIR/bar/keyboard.sh"
 
 # Update dwm status bar every second
 while true
 do
-    xsetroot -name "$(dwm_jdate)$(dwm_date)$(dwm_time)$(dwm_alsa)$(dwm_keyboard)"
+    #xsetroot -name "$(cpu_ram)|$(du)|$(jdate)|$(date)|$(time)|$(alsa)|$(keyboard)"
+    xsetroot -name " $(cpu_ram) | $(du) | $(dwm_jdate) | $(dwm_date) | $(time) | $(alsa) | $(keyboard)"
     sleep 1s
 done
 
+# Import functions with "$include /route/to/module"
+# It is recommended that you place functions in the subdirectory ./bar-functions and use: . "$DIR/bar-functions/dwm_example.sh"
+
+# Change the charachter(s) used to seperate modules. If two are used, they will be placed at the start and end.
+#export SEP="|"
 #export SEP1="["
 #export SEP2="]"
+
 # Import the modules
-#. "$DIR/bar-functions/dwm_resources.sh"
 #. "$DIR/bar-functions/dwm_weather.sh"
 #. "$DIR/bar-functions/dwm_cmus.sh"
 #. "$DIR/bar-functions/dwm_network.sh"
