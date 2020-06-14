@@ -8,3 +8,4 @@ setxkbmap -model pc105 -layout us,ir -option grp:alt_shift_toggle &
 
 kitty &
 firefox &
+dunst &

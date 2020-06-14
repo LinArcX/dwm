@@ -55,10 +55,17 @@ static const Layout layouts[] = {
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+#define PrintScreenDWM    0x0000ff61
+
+#define  DWMPATH  "/home/linarcx/miso/dwm/scripts/"
+#define  POWER  "power.sh"
+#define  PATH_POWER  DWMPATH POWER
+#define  SCREENSHOT  "screenshot.sh scr"
+#define  PATH_SCREENSHOT DWMPATH SCREENSHOT
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "sh", "-c", "/home/linarcx/miso/dwm/scripts/power.sh" };
+static const char *dmenucmd[] = { "sh", "-c", PATH_POWER };
 static const char *termcmd[]  = { "kitty", NULL };
 
 static const char *rofi_drun[] = { "rofi", "-show", "drun", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
@@ -83,6 +90,7 @@ static Key keys[] = {
     { 0,            XF86XK_AudioMute,          spawn,          SHCMD("amixer set Master toggle")},
     { 0,            XF86XK_AudioRaiseVolume,   spawn,          SHCMD("amixer set Master 5%+")},
     { 0,            XF86XK_AudioLowerVolume,   spawn,          SHCMD("amixer set Master 5%-")},
+    { 0,            PrintScreenDWM,            spawn,          SHCMD(PATH_SCREENSHOT)},
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -131,13 +139,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
-//{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-//static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
-//sh -c "/home/linarcx/mis/dwm/scripts/rofi-power.sh"
-//
-//bindsym $mod+F1 exec rofi -show drun -font "Inconsolata 12" -theme gruvbox-dark-soft -show-icons
-//bindsym $mod+F2 exec rofi -show run -font "Inconsolata 12" -theme gruvbox-dark-soft -show-icons
-//bindsym $mod+F3 exec rofi -show ssh -font "Inconsolata 12" -theme gruvbox-dark-soft -show-icons
-//bindsym $mod+F4 exec rofi -show keys -font "Inconsolata 12" -theme gruvbox-dark-soft -show-icons
-//bindsym $mod+F5 exec rofi -show window -font "Inconsolata 12" -theme gruvbox-dark-soft -show-icons
