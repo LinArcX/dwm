@@ -1389,7 +1389,7 @@ run(void)
 
 void
 runAutostart(void) {
-	system("cd ~/mis/dwm/scripts; ./autostart.sh &");
+	system("cd ~/miso/dwm/scripts; ./autostart.sh &");
 }
 
 void

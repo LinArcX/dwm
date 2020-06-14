@@ -90,7 +90,7 @@ Bugs should be reported [here](https://github.com/LinArcX/dwm/issues) on the Git
 E-Mail:linarcx@gmail.com
 
 <h1 align="center">
-	<img width="200" src="./assets/dwm.svg" alt="dwm">
+	<img width="200" src="./dwm.png" alt="dwm">
 	<br>
 </h1>
 
