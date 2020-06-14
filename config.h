@@ -61,7 +61,9 @@ static const Layout layouts[] = {
 #define  POWER  "power.sh"
 #define  PATH_POWER  DWMPATH POWER
 #define  SCREENSHOT  "screenshot.sh scr"
+#define  WINSCREENSHOT  "screenshot.sh win"
 #define  PATH_SCREENSHOT DWMPATH SCREENSHOT
+#define  PATH_WINSCREENSHOT DWMPATH WINSCREENSHOT
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
@@ -91,6 +93,7 @@ static Key keys[] = {
     { 0,            XF86XK_AudioRaiseVolume,   spawn,          SHCMD("amixer set Master 5%+")},
     { 0,            XF86XK_AudioLowerVolume,   spawn,          SHCMD("amixer set Master 5%-")},
     { 0,            PrintScreenDWM,            spawn,          SHCMD(PATH_SCREENSHOT)},
+    { MODKEY,                       XK_p,      spawn,          SHCMD(PATH_WINSCREENSHOT)},
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },

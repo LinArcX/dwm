@@ -8,13 +8,14 @@ NAME="${DIR}/Screenshot from ${DATE}.png"
 # Check if the dir to store the screenshots exists, else create it:
 if [ ! -d "${DIR}" ]; then
     mkdir -p "${DIR}";
-    echo 100 |sudo tee $BRIGHTNESS; sleep 0.1; echo 4882 |sudo tee $BRIGHTNESS > /dev/null && 2>&1
+    //echo 100 |sudo tee $BRIGHTNESS; sleep 0.1; echo 4882 |sudo tee $BRIGHTNESS > /dev/null && 2>&1
 fi
 
 # Screenshot a selected window
 if [ "$1" = "win" ]; then
     import -format png "${NAME}";
-    echo 100 |sudo tee $BRIGHTNESS; sleep 0.1; echo 4882 |sudo tee $BRIGHTNESS > /dev/null && 2>&1
+    notify-send --icon=gtk-info "Saved to: ${DIR}" "${NAME}"
+    //echo 100 |sudo tee $BRIGHTNESS; sleep 0.1; echo 4882 |sudo tee $BRIGHTNESS > /dev/null && 2>&1
 fi
 
 # Screenshot the entire screen
@@ -28,5 +29,4 @@ fi
 # Screenshot a selected area
 if [ "$1" = "area" ]; then
     import -format png "${NAME}";
-    echo 100 |sudo tee $BRIGHTNESS; sleep 0.1; echo 4882 |sudo tee $BRIGHTNESS > /dev/null && 2>&1
 fi
