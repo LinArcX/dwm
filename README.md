@@ -14,7 +14,7 @@ In order to build this fork of dwm, you need:
 - setxkbmap
 - alsa-utils
 - xkblayout-state
-- gnome-screenshot
+- ImageMagick
 
 Tip: if you want to use __pkexec__, you should first install `elogind` and start/enable it's service:
 
