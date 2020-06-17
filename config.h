@@ -59,21 +59,31 @@ static const Layout layouts[] = {
 
 #define  DWMPATH  "/home/linarcx/miso/dwm/scripts/"
 #define  POWER  "power.sh"
-#define  PATH_POWER  DWMPATH POWER
 #define  SCREENSHOT  "screenshot.sh scr"
 #define  WINSCREENSHOT  "screenshot.sh win"
+#define  PATH_POWER  DWMPATH POWER
 #define  PATH_SCREENSHOT DWMPATH SCREENSHOT
 #define  PATH_WINSCREENSHOT DWMPATH WINSCREENSHOT
+
+#define  DMENUPATH  "/home/linarcx/miso/dmenu/scripts/"
+#define  APPLICAIONS  "applications.sh"
+#define  POWERMANAGER  "power_manager.sh"
+#define  DESKTOPENTRIES  "desktop_entries.sh"
+#define  CHANNELS  "channels.sh"
+#define  PATH_APPLICATIONS DMENUPATH APPLICAIONS
+#define  PATH_POWERMANAGER DMENUPATH POWERMANAGER
+#define  PATH_DESKTOPENTRIES DMENUPATH DESKTOPENTRIES
+#define  PATH_CHANNELS DMENUPATH CHANNELS
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "sh", "-c", PATH_POWER };
 static const char *termcmd[]  = { "kitty", NULL };
 
-static const char *rofi_drun[] = { "rofi", "-show", "drun", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
-static const char *rofi_run[] = { "rofi", "-show", "run", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
-static const char *rofi_keys[] = { "rofi", "-show", "keys", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
-static const char *rofi_window[] = { "rofi", "-show", "window", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
+//static const char *rofi_drun[] = { "rofi", "-show", "drun", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
+//static const char *rofi_run[] = { "rofi", "-show", "run", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
+//static const char *rofi_keys[] = { "rofi", "-show", "keys", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
+//static const char *rofi_window[] = { "rofi", "-show", "window", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
 static const char *firefox_window[] = { "firefox"};
 
 static const char *mutecmd[] = { "amixer", "-q", "sset", "Master", "toggle", NULL };
@@ -82,12 +92,12 @@ static const char *voldowncmd[] = { "amixer", "-q", "sset", "PCM", "5+", "unmute
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY|ShiftMask,             XK_e,      spawn,          {.v = dmenucmd } },
+	{ MODKEY|ShiftMask,             XK_e,      spawn,          SHCMD(PATH_POWERMANAGER)},
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_F1,     spawn,          {.v = rofi_drun } },
-	{ MODKEY,                       XK_F2,     spawn,          {.v = rofi_run } },
-	{ MODKEY,                       XK_F3,     spawn,          {.v = rofi_keys } },
-	{ MODKEY,                       XK_F4,     spawn,          {.v = rofi_window } },
+	{ MODKEY,                       XK_F1,     spawn,          SHCMD(PATH_APPLICATIONS)},
+	{ MODKEY,                       XK_F2,     spawn,          SHCMD(PATH_DESKTOPENTRIES)},
+	{ MODKEY,                       XK_F3,     spawn,          SHCMD(PATH_CHANNELS)},
+	{ MODKEY,                       XK_F4,     spawn,          SHCMD(PATH_DESKTOPENTRIES)},
 	{ MODKEY,                       XK_w,      spawn,          {.v = firefox_window} },
     { 0,            XF86XK_AudioMute,          spawn,          SHCMD("amixer set Master toggle")},
     { 0,            XF86XK_AudioRaiseVolume,   spawn,          SHCMD("amixer set Master 5%+")},
