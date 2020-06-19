@@ -2,7 +2,7 @@
 # Date is formatted like like this: "[Mon 01-01-00 00:00:00]"
 
 dwm_jdate () {
-    printf "%s" "$(jdate '+%Y/%m/%d %h')"
+    printf "%s" "$(jdate '+%Y/%m/%d')"
 }
 dwm_jdate
 
