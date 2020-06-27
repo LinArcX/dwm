@@ -30,7 +30,9 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
     { "mpv",      NULL,       NULL,       0,            1,           -1 },
-	//{ "Firefox",  NULL,       NULL,       1 << 8,       0,           -1 },
+    { "Emulator", "",         NULL,       0,            1,           -1 },
+    { "",   "Emulator",       NULL,       0,            1,           -1 },
+    { "Firefox", "",          NULL,       2,            0,           -1 },
 };
 
 /* layout(s) */
@@ -157,3 +159,6 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
+
+//{ "Emulator", "Emulator",       NULL,       1 << 8,            1,           -1 },
+//{ "Firefox",  NULL,       NULL,       1,            1,           -1 },
