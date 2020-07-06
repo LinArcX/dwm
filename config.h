@@ -33,6 +33,9 @@ static const Rule rules[] = {
     { "Emulator", "",         NULL,       0,            1,           -1 },
     { "",   "Emulator",       NULL,       0,            1,           -1 },
     { "Firefox", "",          NULL,       2,            0,           -1 },
+    { "transmission-gtk", "",    NULL,    4,            0,           -1 },
+    { "Transmission-gtk", "",    NULL,    4,            0,           -1 },
+    { "Transmission", "",    NULL,        4,            0,           -1 },
 };
 
 /* layout(s) */
