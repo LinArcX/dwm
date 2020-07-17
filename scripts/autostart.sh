@@ -1,6 +1,6 @@
 #!/bin/sh
 numlockx on &
-feh --bg-fill /home/linarcx/Pictures/sierra.jpg &
+display -backdrop -background '#3f3f3f' -window root /home/linarcx/Pictures/sierra.jpg
 setxkbmap -model pc105 -layout us,ir -option grp:alt_shift_toggle &
 
 ./bar.sh &
