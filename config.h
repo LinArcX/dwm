@@ -30,23 +30,13 @@ static const Rule rules[] = {
 	 */
 	/* class      instance    title       tags mask     isfloating   monitor */
     { "mpv",      NULL,       NULL,       0,            1,           -1 },
-
     { "Emulator", "",         NULL,       0,            1,           -1 },
     { "",   "Emulator",       NULL,       0,            1,           -1 },
-
     { "Firefox", "",          NULL,       2,            0,           -1 },
-
-    { "",         "",         "weechat",  4,            0,           -1 },
-
-    { "transmission-gtk", "",    NULL,    5,            0,           -1 },
-    { "Transmission-gtk", "",    NULL,    5,            0,           -1 },
-    { "Transmission", "",     NULL,       5,            0,           -1 },
-
-    { "uget-gtk", "",         NULL,       5,            0,           -1 },
-    { "uGet", "",             NULL,       5,            0,           -1 },
-    { "Uget-gtk", "",         NULL,       5,            0,           -1 },
-
-    { "TelegramDesktop",  "", NULL,       6,            0,           -1 },
+    { "",         "",    "weechat",       4,            0,           -1 },
+    { "Transmission-gtk", "", NULL,       4,            0,           -1 },
+    { "Uget-gtk", "",         NULL,       4,            0,           -1 },
+    { "TelegramDesktop",  "", NULL,       4,            0,           -1 },
 };
 
 /* layout(s) */
@@ -87,13 +77,11 @@ static const Layout layouts[] = {
 #define  DESKTOPENTRIES  "desktop_entries.sh"
 #define  CHANNELS  "channels.sh"
 #define  SCRIPTS  "scripts.sh"
-#define  LOCATIONS  "locations.sh"
 #define  PATH_APPLICATIONS DMENUPATH APPLICAIONS
 #define  PATH_POWERMANAGER DMENUPATH POWERMANAGER
 #define  PATH_DESKTOPENTRIES DMENUPATH DESKTOPENTRIES
 #define  PATH_CHANNELS DMENUPATH CHANNELS
 #define  PATH_SCRIPTS DMENUPATH SCRIPTS
-#define  PATH_LOCATIONS DMENUPATH LOCATIONS
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
@@ -104,7 +92,6 @@ static const char *termcmd[]  = { "st", NULL };
 //static const char *rofi_run[] = { "rofi", "-show", "run", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
 //static const char *rofi_keys[] = { "rofi", "-show", "keys", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
 //static const char *rofi_window[] = { "rofi", "-show", "window", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
-static const char *firefox_window[] = { "firefox"};
 
 static const char *mutecmd[] = { "amixer", "-q", "sset", "Master", "toggle", NULL };
 static const char *volupcmd[] = { "amixer", "-q", "sset", "PCM", "5-", "unmute", NULL };
@@ -115,11 +102,9 @@ static Key keys[] = {
 	{ MODKEY|ShiftMask,             XK_e,      spawn,          SHCMD(PATH_POWERMANAGER)},
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
 	{ MODKEY,                       XK_F1,     spawn,          SHCMD(PATH_APPLICATIONS)},
-	{ MODKEY,                       XK_F2,     spawn,          SHCMD(PATH_LOCATIONS)},
-	{ MODKEY,                       XK_F3,     spawn,          SHCMD(PATH_SCRIPTS)},
-	{ MODKEY,                       XK_F4,     spawn,          SHCMD(PATH_CHANNELS)},
-	{ MODKEY,                       XK_F5,     spawn,          SHCMD(PATH_DESKTOPENTRIES)},
-	{ MODKEY,                       XK_w,      spawn,          {.v = firefox_window} },
+	{ MODKEY,                       XK_F2,     spawn,          SHCMD(PATH_SCRIPTS)},
+	{ MODKEY,                       XK_F3,     spawn,          SHCMD(PATH_CHANNELS)},
+	{ MODKEY,                       XK_F4,     spawn,          SHCMD(PATH_DESKTOPENTRIES)},
     { 0,            XF86XK_AudioMute,          spawn,          SHCMD("amixer set Master toggle")},
     { 0,            XF86XK_AudioRaiseVolume,   spawn,          SHCMD("amixer set Master 5%+")},
     { 0,            XF86XK_AudioLowerVolume,   spawn,          SHCMD("amixer set Master 5%-")},
