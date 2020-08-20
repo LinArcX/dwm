@@ -9,9 +9,9 @@ st &
 firefox &
 dunst &
 
-while sleep 600; do
-    pgrep mpv
-    if [ $? -ne 0 ]; then
+while sleep 10; do
+    pgrep zathura
+    if [ $? -eq 0 ]; then
         slock;
     fi;
 done &
