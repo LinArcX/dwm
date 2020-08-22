@@ -9,7 +9,7 @@ st &
 firefox &
 dunst &
 
-while sleep 10; do
+while sleep 600; do
     pgrep zathura
     if [ $? -eq 0 ]; then
         slock;
