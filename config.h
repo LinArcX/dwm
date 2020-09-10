@@ -33,6 +33,7 @@ static const Rule rules[] = {
     { "Emulator", "",         NULL,       0,            1,           -1 },
     { "",   "Emulator",       NULL,       0,            1,           -1 },
     { "Firefox", "",          NULL,       2,            0,           -1 },
+    { "Tor Browser", "",          NULL,       2,            0,           -1 },
     { "",         "",    "weechat",       4,            0,           -1 },
     { "Transmission-gtk", "", NULL,       4,            0,           -1 },
     { "Uget-gtk", "",         NULL,       4,            0,           -1 },
