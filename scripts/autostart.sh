@@ -8,6 +8,8 @@ setxkbmap -model pc105 -layout us,ir -option grp:alt_shift_toggle &
 st &
 firefox &
 dunst &
+emacs --fg-daemon &
+#emacsclient -n -s /var/run/user/1000/emacs/server -c -a emacs /home/linarcx/.emacs.d/init.el &
 
 while sleep 600; do
     pgrep zathura
