@@ -9,11 +9,7 @@ st &
 firefox &
 dunst &
 emacs --daemon
-emacsclient -s /var/run/user/1000/emacs/server -c -a emacs -n /home/linarcx/.emacs.d/init.el &
-
-#emacs --fg-daemon &
-#emacsclient -n -s /var/run/user/1000/emacs/server -a emacs
-#emacsclient -n -s /var/run/user/1000/emacs/server -c -a emacs /home/linarcx/.emacs.d/init.el &
+emacsclient -s /var/run/user/1000/emacs/server -c -n -a emacs &
 
 while sleep 600; do
     pgrep zathura
@@ -21,7 +17,3 @@ while sleep 600; do
         slock;
     fi;
 done &
-
-#/usr/libexec/policykit-1-pantheon/io.elementary.desktop.agent-polkit &
-#watch -n 20 '/usr/local/bin/slock' &>/dev/null &
-#> /dev/null 2>&1
