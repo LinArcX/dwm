@@ -24,20 +24,17 @@ static const char *colors[][3]      = {
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
 static const Rule rules[] = {
-	/* xprop(1):
-	 *	WM_CLASS(STRING) = instance, class
-	 *	WM_NAME(STRING) = title
-	 */
-	/* class      instance    title       tags mask     isfloating   monitor */
+    /* xprop(1):
+     *	WM_CLASS(STRING) = instance, class
+     *	WM_NAME(STRING) = title
+     */
+    /* class    instance      title       tags mask     isfloating   monitor */
+    { "Emacs",  "",           NULL,       0,            0,           -1 },
     { "mpv",      NULL,       NULL,       0,            1,           -1 },
     { "Emulator", "",         NULL,       0,            1,           -1 },
     { "",   "Emulator",       NULL,       0,            1,           -1 },
     { "Firefox", "",          NULL,       2,            0,           -1 },
     { "Tor Browser", "",      NULL,       2,            0,           -1 },
-    { "Emacs",  "",           NULL,       4,            0,           -1 },
-    { "",         "",    "weechat",       4,            0,           -1 },
-    { "Transmission-gtk", "", NULL,       4,            0,           -1 },
-    { "Uget-gtk", "",         NULL,       4,            0,           -1 },
     { "TelegramDesktop",  "", NULL,       4,            0,           -1 },
 };
 
