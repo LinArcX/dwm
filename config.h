@@ -1,5 +1,3 @@
-/* See LICENSE file for copyright and license details. */
-
 #include <X11/XF86keysym.h>
 
 /* appearance */
@@ -22,7 +20,6 @@ static const char *colors[][3]      = {
 
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
-
 static const Rule rules[] = {
     /* xprop(1):
      *	WM_CLASS(STRING) = instance, class
@@ -62,101 +59,86 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 #define PrintScreenDWM    0x0000ff61
 
-#define  DWMPATH  "/home/linarcx/miso/dwm/scripts/"
 #define  POWER  "power.sh"
 #define  SCREENSHOT  "screenshot.sh scr"
 #define  WINSCREENSHOT  "screenshot.sh win"
+#define  DWMPATH  "/home/linarcx/miso/dwm/scripts/"
 #define  PATH_POWER  DWMPATH POWER
 #define  PATH_SCREENSHOT DWMPATH SCREENSHOT
 #define  PATH_WINSCREENSHOT DWMPATH WINSCREENSHOT
 
-#define  DMENUPATH  "/home/linarcx/miso/dmenu/scripts/"
-#define  APPLICAIONS  "applications.sh"
-#define  POWERMANAGER  "power_manager.sh"
-#define  DESKTOPENTRIES  "desktop_entries.sh"
+#define  COMMANDS  "commands.sh"
 #define  CHANNELS  "channels.sh"
-#define  SCRIPTS  "scripts.sh"
-#define  PATH_APPLICATIONS DMENUPATH APPLICAIONS
-#define  PATH_POWERMANAGER DMENUPATH POWERMANAGER
-#define  PATH_DESKTOPENTRIES DMENUPATH DESKTOPENTRIES
+#define  POWERMANAGER  "power_manager.sh"
+#define  DMENUPATH  "/home/linarcx/miso/dmenu/scripts/"
+#define  PATH_COMMANDS DMENUPATH COMMANDS
 #define  PATH_CHANNELS DMENUPATH CHANNELS
-#define  PATH_SCRIPTS DMENUPATH SCRIPTS
+#define  PATH_POWERMANAGER DMENUPATH POWERMANAGER
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "sh", "-c", PATH_POWER };
 static const char *termcmd[]  = { "st", NULL };
-
-//static const char *rofi_drun[] = { "rofi", "-show", "drun", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
-//static const char *rofi_run[] = { "rofi", "-show", "run", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
-//static const char *rofi_keys[] = { "rofi", "-show", "keys", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
-//static const char *rofi_window[] = { "rofi", "-show", "window", "-font", "Inconsolata 12", "-theme", "gruvbox-dark-soft", "-show-icons" };
-
 static const char *mutecmd[] = { "amixer", "-q", "sset", "Master", "toggle", NULL };
 static const char *volupcmd[] = { "amixer", "-q", "sset", "PCM", "5-", "unmute", NULL };
 static const char *voldowncmd[] = { "amixer", "-q", "sset", "PCM", "5+", "unmute", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-	{ MODKEY|ShiftMask,             XK_e,      spawn,          SHCMD(PATH_POWERMANAGER)},
-	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY,                       XK_F1,     spawn,          SHCMD(PATH_APPLICATIONS)},
-	{ MODKEY,                       XK_F2,     spawn,          SHCMD(PATH_SCRIPTS)},
-	{ MODKEY,                       XK_F3,     spawn,          SHCMD(PATH_CHANNELS)},
-	{ MODKEY,                       XK_F4,     spawn,          SHCMD(PATH_DESKTOPENTRIES)},
-    { 0,            XF86XK_AudioMute,          spawn,          SHCMD("amixer set Master toggle")},
-    { 0,            XF86XK_AudioRaiseVolume,   spawn,          SHCMD("amixer set Master 5%+")},
-    { 0,            XF86XK_AudioLowerVolume,   spawn,          SHCMD("amixer set Master 5%-")},
-    { 0,            PrintScreenDWM,            spawn,          SHCMD(PATH_SCREENSHOT)},
-    { MODKEY,                       XK_p,      spawn,          SHCMD(PATH_WINSCREENSHOT)},
-	{ MODKEY,                       XK_b,      togglebar,      {0} },
-	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
-	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
-	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } },
-	{ MODKEY,                       XK_d,      incnmaster,     {.i = -1 } },
-	{ MODKEY,                       XK_h,      setmfact,       {.f = -0.05} },
-	{ MODKEY,                       XK_l,      setmfact,       {.f = +0.05} },
-	{ MODKEY,                       XK_Return, zoom,           {0} },
-	{ MODKEY,                       XK_Tab,    view,           {0} },
-	{ MODKEY|ShiftMask,             XK_q,      killclient,     {0} },
-	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[0]} },
-	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[1]} },
-	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[2]} },
-	{ MODKEY,                       XK_space,  setlayout,      {0} },
-	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
-	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
-	{ MODKEY|ShiftMask,             XK_0,      tag,            {.ui = ~0 } },
-	{ MODKEY,                       XK_comma,  focusmon,       {.i = -1 } },
-	{ MODKEY,                       XK_period, focusmon,       {.i = +1 } },
-	{ MODKEY|ShiftMask,             XK_comma,  tagmon,         {.i = -1 } },
-	{ MODKEY|ShiftMask,             XK_period, tagmon,         {.i = +1 } },
-	TAGKEYS(                        XK_1,                      0)
-	TAGKEYS(                        XK_2,                      1)
-	TAGKEYS(                        XK_3,                      2)
-	TAGKEYS(                        XK_4,                      3)
-	TAGKEYS(                        XK_5,                      4)
-	TAGKEYS(                        XK_6,                      5)
-	TAGKEYS(                        XK_7,                      6)
-	TAGKEYS(                        XK_8,                      7)
-	TAGKEYS(                        XK_9,                      8)
+  { MODKEY|ShiftMask,  XK_e,      spawn,          SHCMD(PATH_POWERMANAGER)},
+  { MODKEY,            XK_Return, spawn,          {.v = termcmd } },
+  { MODKEY,            XK_F1,     spawn,          SHCMD(PATH_COMMANDS)},
+  { MODKEY,            XK_F2,     spawn,          SHCMD(PATH_CHANNELS)},
+  { 0,                 XF86XK_AudioMute,          spawn,          SHCMD("amixer set Master toggle")},
+  { 0,                 XF86XK_AudioRaiseVolume,   spawn,          SHCMD("amixer set Master 5%+")},
+  { 0,                 XF86XK_AudioLowerVolume,   spawn,          SHCMD("amixer set Master 5%-")},
+  { 0,                 PrintScreenDWM,            spawn,          SHCMD(PATH_SCREENSHOT)},
+  { MODKEY,            XK_p,      spawn,          SHCMD(PATH_WINSCREENSHOT)},
+  { MODKEY,            XK_b,      togglebar,      {0} },
+  { MODKEY,            XK_j,      focusstack,     {.i = +1 } },
+  { MODKEY,            XK_k,      focusstack,     {.i = -1 } },
+  { MODKEY,            XK_i,      incnmaster,     {.i = +1 } },
+  { MODKEY,            XK_d,      incnmaster,     {.i = -1 } },
+  { MODKEY,            XK_h,      setmfact,       {.f = -0.05} },
+  { MODKEY,            XK_l,      setmfact,       {.f = +0.05} },
+  { MODKEY,            XK_Return, zoom,           {0} },
+  { MODKEY,            XK_Tab,    view,           {0} },
+  { MODKEY|ShiftMask,  XK_q,      killclient,     {0} },
+  { MODKEY,            XK_m,      setlayout,      {.v = &layouts[0]} },
+  { MODKEY,            XK_t,      setlayout,      {.v = &layouts[1]} },
+  { MODKEY,            XK_f,      setlayout,      {.v = &layouts[2]} },
+  { MODKEY,            XK_space,  setlayout,      {0} },
+  { MODKEY|ShiftMask,  XK_space,  togglefloating, {0} },
+  { MODKEY,            XK_0,      view,           {.ui = ~0 } },
+  { MODKEY|ShiftMask,  XK_0,      tag,            {.ui = ~0 } },
+  { MODKEY,            XK_comma,  focusmon,       {.i = -1 } },
+  { MODKEY,            XK_period, focusmon,       {.i = +1 } },
+  { MODKEY|ShiftMask,  XK_comma,  tagmon,         {.i = -1 } },
+  { MODKEY|ShiftMask,  XK_period, tagmon,         {.i = +1 } },
+  TAGKEYS(             XK_1,                      0)
+  TAGKEYS(             XK_2,                      1)
+  TAGKEYS(             XK_3,                      2)
+  TAGKEYS(             XK_4,                      3)
+  TAGKEYS(             XK_5,                      4)
+  TAGKEYS(             XK_6,                      5)
+  TAGKEYS(             XK_7,                      6)
+  TAGKEYS(             XK_8,                      7)
+  TAGKEYS(             XK_9,                      8)
 };
 
 /* button definitions */
 /* click can be ClkTagBar, ClkLtSymbol, ClkStatusText, ClkWinTitle, ClkClientWin, or ClkRootWin */
 static Button buttons[] = {
-	/* click                event mask      button          function        argument */
-	{ ClkLtSymbol,          0,              Button1,        setlayout,      {0} },
-	{ ClkLtSymbol,          0,              Button3,        setlayout,      {.v = &layouts[2]} },
-	{ ClkWinTitle,          0,              Button2,        zoom,           {0} },
-	{ ClkStatusText,        0,              Button2,        spawn,          {.v = termcmd } },
-	{ ClkClientWin,         MODKEY,         Button1,        movemouse,      {0} },
-	{ ClkClientWin,         MODKEY,         Button2,        togglefloating, {0} },
-	{ ClkClientWin,         MODKEY,         Button3,        resizemouse,    {0} },
-	{ ClkTagBar,            0,              Button1,        view,           {0} },
-	{ ClkTagBar,            0,              Button3,        toggleview,     {0} },
-	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
-	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
+  /* click                event mask      button          function        argument */
+  { ClkLtSymbol,       0,              Button1,        setlayout,      {0} },
+  { ClkLtSymbol,       0,              Button3,        setlayout,      {.v = &layouts[2]} },
+  { ClkWinTitle,       0,              Button2,        zoom,           {0} },
+  { ClkStatusText,     0,              Button2,        spawn,          {.v = termcmd } },
+  { ClkClientWin,      MODKEY,         Button1,        movemouse,      {0} },
+  { ClkClientWin,      MODKEY,         Button2,        togglefloating, {0} },
+  { ClkClientWin,      MODKEY,         Button3,        resizemouse,    {0} },
+  { ClkTagBar,         0,              Button1,        view,           {0} },
+  { ClkTagBar,         0,              Button3,        toggleview,     {0} },
+  { ClkTagBar,         MODKEY,         Button1,        tag,            {0} },
+  { ClkTagBar,         MODKEY,         Button3,        toggletag,      {0} },
 };
-
-//{ "Emulator", "Emulator",       NULL,       1 << 8,            1,           -1 },
-//{ "Firefox",  NULL,       NULL,       1,            1,           -1 },
