@@ -26,11 +26,15 @@ static const Rule rules[] = {
      *	WM_NAME(STRING) = title
      */
     /* class    instance      title       tags mask     isfloating   monitor */
-    { "Emacs",  "",           NULL,       0,            0,           -1 },
+    { "Emacs",  "",           NULL,       4,            0,           -1 },
+    { "st-256color",  "",     NULL,       0,            0,           -1 },
+    { "Alacritty",  "",       NULL,       0,            0,           -1 },
     { "mpv",      NULL,       NULL,       0,            1,           -1 },
     { "Emulator", "",         NULL,       0,            1,           -1 },
     { "",   "Emulator",       NULL,       0,            1,           -1 },
     { "Firefox", "",          NULL,       2,            0,           -1 },
+    { "Chromium", "",         NULL,       2,            0,           -1 },
+    { "nyxt", "",             NULL,       2,            0,           -1 },
     { "Tor Browser", "",      NULL,       2,            0,           -1 },
     { "TelegramDesktop",  "", NULL,       4,            0,           -1 },
 };
@@ -78,7 +82,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "sh", "-c", PATH_POWER };
-static const char *termcmd[]  = { "st", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 static const char *mutecmd[] = { "amixer", "-q", "sset", "Master", "toggle", NULL };
 static const char *volupcmd[] = { "amixer", "-q", "sset", "PCM", "5-", "unmute", NULL };
 static const char *voldowncmd[] = { "amixer", "-q", "sset", "PCM", "5+", "unmute", NULL };
@@ -86,7 +90,8 @@ static const char *voldowncmd[] = { "amixer", "-q", "sset", "PCM", "5+", "unmute
 static Key keys[] = {
 	/* modifier                     key        function        argument */
   { MODKEY|ShiftMask,  XK_e,      spawn,          SHCMD(PATH_POWERMANAGER)},
-  { MODKEY,            XK_Return, spawn,          {.v = termcmd } },
+  { MODKEY,            XK_r,      spawn,          SHCMD("alacritty -e lfcd.sh")},
+  { MODKEY,            XK_Return, spawn,          {.v = termcmd }},
   { MODKEY,            XK_F1,     spawn,          SHCMD(PATH_COMMANDS)},
   { MODKEY,            XK_F2,     spawn,          SHCMD(PATH_CHANNELS)},
   { 0,                 XF86XK_AudioMute,          spawn,          SHCMD("amixer set Master toggle")},
