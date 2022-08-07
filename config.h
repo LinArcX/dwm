@@ -35,7 +35,7 @@ static const Rule rules[] = {
     { "Brave-browser", "",    NULL,       2,            0,           -1 },
     { "nyxt", "",             NULL,       2,            0,           -1 },
     { "Tor Browser", "",      NULL,       2,            0,           -1 },
-    { "TelegramDesktop",  "", NULL,       4,            0,           -1 },
+    { "Anki",        "",      NULL,       4,            0,           -1 },
 };
 
 /* layout(s) */
