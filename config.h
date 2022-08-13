@@ -30,6 +30,8 @@ static const Rule rules[] = {
     { "st-256color",  "",     NULL,       0,            0,           -1 },
     { "Alacritty",  "",       NULL,       0,            0,           -1 },
     { "mpv",      NULL,       NULL,       0,            1,           -1 },
+    { "Xephyr", "",           NULL,       0,            1,           -1 },
+    { "", "Xephyr",           NULL,       0,            1,           -1 },
     { "Emulator", "",         NULL,       0,            1,           -1 },
     { "",   "Emulator",       NULL,       0,            1,           -1 },
     { "Brave-browser", "",    NULL,       2,            0,           -1 },
