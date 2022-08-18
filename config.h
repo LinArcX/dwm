@@ -104,7 +104,7 @@ static Key keys[] = {
   { 0,                 XF86XK_AudioRaiseVolume,   spawn, SHCMD("amixer set Master 5%+")},
   { 0,                 XF86XK_AudioLowerVolume,   spawn, SHCMD("amixer set Master 5%-")},
   { 0,                 PrintScreenDWM,            spawn, SHCMD(SCREENSHOT_FULL)},
-  { MODKEY,            XK_p,      spawn,          SHCMD(SCREENSHOT_REGION)},
+  { MODKEY,            PrintScreenDWM,            spawn, SHCMD(SCREENSHOT_REGION)},
   { MODKEY,            XK_b,      togglebar,      {0} },
   { MODKEY,            XK_j,      focusstack,     {.i = +1 } },
   { MODKEY,            XK_k,      focusstack,     {.i = -1 } },
