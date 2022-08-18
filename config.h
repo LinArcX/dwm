@@ -64,25 +64,24 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 #define PrintScreenDWM    0x0000ff61
 
-#define  POWER  "power.sh"
-#define  SCREENSHOT  "screenshot.sh scr"
-#define  WINSCREENSHOT  "screenshot.sh win"
-#define  DWMPATH  "/home/linarcx/miso/dwm/scripts/"
-#define  PATH_POWER  DWMPATH POWER
-#define  PATH_SCREENSHOT DWMPATH SCREENSHOT
-#define  PATH_WINSCREENSHOT DWMPATH WINSCREENSHOT
+#define  SCRIPTS_PATH       "$HOME/.local/bin/scripts/03_x/"
+#define  SCREENSHOT_FULL    SCRIPTS_PATH "screenshot_fullscreen.sh"
+#define  SCREENSHOT_REGION  SCRIPTS_PATH "screenshot_region.sh"
 
-#define  COMMANDS  "commands.sh"
-#define  CHANNELS  "channels.sh"
-#define  POWERMANAGER  "power_manager.sh"
-#define  DMENUPATH  "/home/linarcx/miso/dmenu/scripts/"
-#define  PATH_COMMANDS DMENUPATH COMMANDS
-#define  PATH_CHANNELS DMENUPATH CHANNELS
-#define  PATH_POWERMANAGER DMENUPATH POWERMANAGER
+#define  MENU_PATH          "$HOME/.local/bin/menu/"
+#define  POWERMANAGER       MENU_PATH "00_power_manager.sh"
+#define  PACKAGES           MENU_PATH "01_packages.sh"
+#define  XBPS               MENU_PATH "02_xbps.sh"
+#define  NETWORK            MENU_PATH "03_network.sh"
+#define  DEVICES            MENU_PATH "04_devices.sh"
+#define  KERNEL             MENU_PATH "05_kernel.sh"
+#define  SCRIPTS            MENU_PATH "06_scripts.sh"
+#define  OTHER              MENU_PATH "07_other.sh"
+#define  CHANNELS           MENU_PATH "08_channels.sh"
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "sh", "-c", PATH_POWER };
+static const char *dmenucmd[] = { "sh", "-c", POWERMANAGER };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *mutecmd[] = { "amixer", "-q", "sset", "Master", "toggle", NULL };
 static const char *volupcmd[] = { "amixer", "-q", "sset", "PCM", "5-", "unmute", NULL };
@@ -90,16 +89,22 @@ static const char *voldowncmd[] = { "amixer", "-q", "sset", "PCM", "5+", "unmute
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-  { MODKEY|ShiftMask,  XK_e,      spawn,          SHCMD(PATH_POWERMANAGER)},
-  { MODKEY,            XK_r,      spawn,          SHCMD("alacritty -e lfcd.sh")},
+  { MODKEY|ShiftMask,  XK_e,      spawn,          SHCMD(POWERMANAGER)},
+  { MODKEY,            XK_r,      spawn,          SHCMD("alacritty -e open_lf_at_home.sh")},
   { MODKEY,            XK_Return, spawn,          {.v = termcmd }},
-  { MODKEY,            XK_F1,     spawn,          SHCMD(PATH_COMMANDS)},
-  { MODKEY,            XK_F2,     spawn,          SHCMD(PATH_CHANNELS)},
-  { 0,                 XF86XK_AudioMute,          spawn,          SHCMD("amixer set Master toggle")},
-  { 0,                 XF86XK_AudioRaiseVolume,   spawn,          SHCMD("amixer set Master 5%+")},
-  { 0,                 XF86XK_AudioLowerVolume,   spawn,          SHCMD("amixer set Master 5%-")},
-  { 0,                 PrintScreenDWM,            spawn,          SHCMD(PATH_SCREENSHOT)},
-  { MODKEY,            XK_p,      spawn,          SHCMD(PATH_WINSCREENSHOT)},
+  { MODKEY,            XK_F1,     spawn,          SHCMD(PACKAGES)},
+  { MODKEY,            XK_F2,     spawn,          SHCMD(XBPS)},
+  { MODKEY,            XK_F3,     spawn,          SHCMD(NETWORK)},
+  { MODKEY,            XK_F4,     spawn,          SHCMD(DEVICES)},
+  { MODKEY,            XK_F5,     spawn,          SHCMD(KERNEL)},
+  { MODKEY,            XK_F6,     spawn,          SHCMD(SCRIPTS)},
+  { MODKEY,            XK_F7,     spawn,          SHCMD(OTHER)},
+  { MODKEY,            XK_F8,     spawn,          SHCMD(CHANNELS)},
+  { 0,                 XF86XK_AudioMute,          spawn, SHCMD("amixer set Master toggle")},
+  { 0,                 XF86XK_AudioRaiseVolume,   spawn, SHCMD("amixer set Master 5%+")},
+  { 0,                 XF86XK_AudioLowerVolume,   spawn, SHCMD("amixer set Master 5%-")},
+  { 0,                 PrintScreenDWM,            spawn, SHCMD(SCREENSHOT_FULL)},
+  { MODKEY,            XK_p,      spawn,          SHCMD(SCREENSHOT_REGION)},
   { MODKEY,            XK_b,      togglebar,      {0} },
   { MODKEY,            XK_j,      focusstack,     {.i = +1 } },
   { MODKEY,            XK_k,      focusstack,     {.i = -1 } },
