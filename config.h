@@ -69,7 +69,6 @@ static const Layout layouts[] = {
 #define  SCREENSHOT_REGION  SCRIPTS_PATH "screenshot_region.sh"
 
 #define  MENU_PATH          "$HOME/.local/bin/menu/"
-#define  POWERMANAGER       MENU_PATH "00_power_manager.sh"
 #define  PACKAGES           MENU_PATH "01_packages.sh"
 #define  XBPS               MENU_PATH "02_xbps.sh"
 #define  NETWORK            MENU_PATH "03_network.sh"
@@ -78,6 +77,9 @@ static const Layout layouts[] = {
 #define  SCRIPTS            MENU_PATH "06_scripts.sh"
 #define  OTHER              MENU_PATH "07_other.sh"
 #define  CHANNELS           MENU_PATH "08_channels.sh"
+#define  MOUNT_DEVICES      MENU_PATH "09_mount_devices.sh"
+#define  UNMOUNT_DEVICES    MENU_PATH "10_unmount_devices.sh"
+#define  POWERMANAGER       MENU_PATH "99_power_manager.sh"
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
@@ -100,6 +102,8 @@ static Key keys[] = {
   { MODKEY,            XK_F6,     spawn,          SHCMD(SCRIPTS)},
   { MODKEY,            XK_F7,     spawn,          SHCMD(OTHER)},
   { MODKEY,            XK_F8,     spawn,          SHCMD(CHANNELS)},
+  { MODKEY,            XK_F9,     spawn,          SHCMD(MOUNT_DEVICES)},
+  { MODKEY,            XK_F10,    spawn,          SHCMD(UNMOUNT_DEVICES)},
   { 0,                 XF86XK_AudioMute,          spawn, SHCMD("amixer set Master toggle")},
   { 0,                 XF86XK_AudioRaiseVolume,   spawn, SHCMD("amixer set Master 5%+")},
   { 0,                 XF86XK_AudioLowerVolume,   spawn, SHCMD("amixer set Master 5%-")},
