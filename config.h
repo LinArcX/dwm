@@ -40,7 +40,6 @@ static const Rule rules[] = {
     { "Anki",             "",           NULL,       4,            0,           -1 },
     { "transmission-gtk", "",           NULL,       4,            0,           -1 },
     { "Transmission-gtk", "",           NULL,       4,            0,           -1 },
-
 };
 
 /* layout(s) */
@@ -73,10 +72,10 @@ static const Layout layouts[] = {
 
 #define  MENU_PATH          "$HOME/.local/bin/menu/"
 #define  PACKAGES           MENU_PATH "01_packages.sh"
-#define  XBPS               MENU_PATH "02_xbps.sh"
-#define  NETWORK            MENU_PATH "03_network.sh"
+#define  PLACES             MENU_PATH "02_places.sh"
+#define  XBPS               MENU_PATH "03_xbps.sh"
 #define  DEVICES            MENU_PATH "04_devices.sh"
-#define  KERNEL             MENU_PATH "05_kernel.sh"
+#define  NETWORK            MENU_PATH "05_network.sh"
 #define  SCRIPTS            MENU_PATH "06_scripts.sh"
 #define  SERVICES           MENU_PATH "07_services.sh"
 #define  CHANNELS           MENU_PATH "08_channels.sh"
@@ -95,46 +94,50 @@ static const char *voldowncmd[] = { "amixer", "-q", "sset", "PCM", "5+", "unmute
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-  { MODKEY|ShiftMask,  XK_e,      spawn,          SHCMD(POWERMANAGER)},
-  { MODKEY,            XK_r,      spawn,          SHCMD("alacritty -e open_lf_at_home.sh")},
-  { MODKEY,            XK_Return, spawn,          {.v = termcmd }},
-  { MODKEY,            XK_F1,     spawn,          SHCMD(PACKAGES)},
-  { MODKEY,            XK_F2,     spawn,          SHCMD(XBPS)},
-  { MODKEY,            XK_F3,     spawn,          SHCMD(NETWORK)},
-  { MODKEY,            XK_F4,     spawn,          SHCMD(DEVICES)},
-  { MODKEY,            XK_F5,     spawn,          SHCMD(KERNEL)},
-  { MODKEY,            XK_F6,     spawn,          SHCMD(SCRIPTS)},
-  { MODKEY,            XK_F7,     spawn,          SHCMD(SERVICES)},
-  { MODKEY,            XK_F8,     spawn,          SHCMD(CHANNELS)},
-  { MODKEY,            XK_F9,     spawn,          SHCMD(MOUNT_DEVICES)},
-  { MODKEY,            XK_F10,    spawn,          SHCMD(UNMOUNT_DEVICES)},
-  { MODKEY,            XK_F11,    spawn,          SHCMD(OTHERS)},
-  { 0,                 XF86XK_AudioMute,          spawn, SHCMD("amixer set Master toggle")},
-  { 0,                 XF86XK_AudioRaiseVolume,   spawn, SHCMD("amixer set Master 5%+")},
-  { 0,                 XF86XK_AudioLowerVolume,   spawn, SHCMD("amixer set Master 5%-")},
-  { 0,                 PrintScreenDWM,            spawn, SHCMD(SCREENSHOT_FULL)},
-  { MODKEY,            PrintScreenDWM,            spawn, SHCMD(SCREENSHOT_REGION)},
-  { MODKEY,            XK_b,      togglebar,      {0} },
-  { MODKEY,            XK_j,      focusstack,     {.i = +1 } },
-  { MODKEY,            XK_k,      focusstack,     {.i = -1 } },
-  { MODKEY,            XK_i,      incnmaster,     {.i = +1 } },
-  { MODKEY,            XK_d,      incnmaster,     {.i = -1 } },
-  { MODKEY,            XK_h,      setmfact,       {.f = -0.05} },
-  { MODKEY,            XK_l,      setmfact,       {.f = +0.05} },
-  { MODKEY,            XK_Return, zoom,           {0} },
-  { MODKEY,            XK_Tab,    view,           {0} },
-  { MODKEY|ShiftMask,  XK_q,      killclient,     {0} },
-  { MODKEY,            XK_m,      setlayout,      {.v = &layouts[0]} },
-  { MODKEY,            XK_t,      setlayout,      {.v = &layouts[1]} },
-  { MODKEY,            XK_f,      setlayout,      {.v = &layouts[2]} },
-  { MODKEY,            XK_space,  setlayout,      {0} },
-  { MODKEY|ShiftMask,  XK_space,  togglefloating, {0} },
-  { MODKEY,            XK_0,      view,           {.ui = ~0 } },
-  { MODKEY|ShiftMask,  XK_0,      tag,            {.ui = ~0 } },
-  { MODKEY,            XK_comma,  focusmon,       {.i = -1 } },
-  { MODKEY,            XK_period, focusmon,       {.i = +1 } },
-  { MODKEY|ShiftMask,  XK_comma,  tagmon,         {.i = -1 } },
-  { MODKEY|ShiftMask,  XK_period, tagmon,         {.i = +1 } },
+  { MODKEY|ShiftMask,  XK_e,                    spawn,     SHCMD(POWERMANAGER)},
+  { MODKEY,            XK_r,                    spawn,     SHCMD("alacritty -e open_lf_at_home.sh")},
+  { MODKEY,            XK_Return,               spawn,     {.v = termcmd }},
+  { MODKEY,            XK_F1,                   spawn,     SHCMD(PACKAGES)},
+  { MODKEY,            XK_F2,                   spawn,     SHCMD(PLACES)},
+  { MODKEY,            XK_F3,                   spawn,     SHCMD(XBPS)},
+  { MODKEY,            XK_F4,                   spawn,     SHCMD(DEVICES)},
+  { MODKEY,            XK_F5,                   spawn,     SHCMD(NETWORK)},
+  { MODKEY,            XK_F6,                   spawn,     SHCMD(SCRIPTS)},
+  { MODKEY,            XK_F7,                   spawn,     SHCMD(SERVICES)},
+  { MODKEY,            XK_F8,                   spawn,     SHCMD(CHANNELS)},
+  { MODKEY,            XK_F9,                   spawn,     SHCMD(MOUNT_DEVICES)},
+  { MODKEY,            XK_F10,                  spawn,     SHCMD(UNMOUNT_DEVICES)},
+  { MODKEY,            XK_F11,                  spawn,     SHCMD(OTHERS)},
+  { 0,                 XF86XK_AudioMute,        spawn,     SHCMD("amixer set Master toggle")},
+  { 0,                 XF86XK_AudioRaiseVolume, spawn,     SHCMD("amixer set Master 5%+")},
+  { 0,                 XF86XK_AudioLowerVolume, spawn,     SHCMD("amixer set Master 5%-")},
+	{ 0,                 XF86XK_AudioNext,        spawn,     SHCMD("mpc next") },
+	{ 0,                 XF86XK_AudioPrev,        spawn,     SHCMD("mpc prev") },
+	{ 0,                 XF86XK_AudioPause,       spawn,     SHCMD("mpc toggle") },
+	{ 0,                 XF86XK_AudioPlay,        spawn,     SHCMD("mpc toggle") },
+  { 0,                 PrintScreenDWM,          spawn,     SHCMD(SCREENSHOT_FULL)},
+  { MODKEY,            PrintScreenDWM,          spawn,     SHCMD(SCREENSHOT_REGION)},
+  { MODKEY,            XK_b,                    togglebar,      {0} },
+  { MODKEY,            XK_j,                    focusstack,     {.i = +1 } },
+  { MODKEY,            XK_k,                    focusstack,     {.i = -1 } },
+  { MODKEY,            XK_i,                    incnmaster,     {.i = +1 } },
+  { MODKEY,            XK_d,                    incnmaster,     {.i = -1 } },
+  { MODKEY,            XK_h,                    setmfact,       {.f = -0.05} },
+  { MODKEY,            XK_l,                    setmfact,       {.f = +0.05} },
+  { MODKEY,            XK_Return,               zoom,           {0} },
+  { MODKEY,            XK_Tab,                  view,           {0} },
+  { MODKEY|ShiftMask,  XK_q,                    killclient,     {0} },
+  { MODKEY,            XK_m,                    setlayout,      {.v = &layouts[0]} },
+  { MODKEY,            XK_t,                    setlayout,      {.v = &layouts[1]} },
+  { MODKEY,            XK_f,                    setlayout,      {.v = &layouts[2]} },
+  { MODKEY,            XK_space,                setlayout,      {0} },
+  { MODKEY|ShiftMask,  XK_space,                togglefloating, {0} },
+  { MODKEY,            XK_0,                    view,           {.ui = ~0 } },
+  { MODKEY|ShiftMask,  XK_0,                    tag,            {.ui = ~0 } },
+  { MODKEY,            XK_comma,                focusmon,       {.i = -1 } },
+  { MODKEY,            XK_period,               focusmon,       {.i = +1 } },
+  { MODKEY|ShiftMask,  XK_comma,                tagmon,         {.i = -1 } },
+  { MODKEY|ShiftMask,  XK_period,               tagmon,         {.i = +1 } },
   TAGKEYS(             XK_1,                      0)
   TAGKEYS(             XK_2,                      1)
   TAGKEYS(             XK_3,                      2)
