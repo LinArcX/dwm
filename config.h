@@ -26,18 +26,21 @@ static const Rule rules[] = {
      *	WM_NAME(STRING) = title
      */
     /* class    instance      title       tags mask     isfloating   monitor */
-    { "Emacs",  "",           NULL,       4,            0,           -1 },
-    { "st-256color",  "",     NULL,       0,            0,           -1 },
-    { "Alacritty",  "",       NULL,       0,            0,           -1 },
-    { "mpv",      NULL,       NULL,       0,            1,           -1 },
-    { "Xephyr", "",           NULL,       0,            1,           -1 },
-    { "", "Xephyr",           NULL,       0,            1,           -1 },
-    { "Emulator", "",         NULL,       0,            1,           -1 },
-    { "",   "Emulator",       NULL,       0,            1,           -1 },
-    { "Brave-browser", "",    NULL,       2,            0,           -1 },
-    { "nyxt", "",             NULL,       2,            0,           -1 },
-    { "Tor Browser", "",      NULL,       2,            0,           -1 },
-    { "Anki",        "",      NULL,       4,            0,           -1 },
+    { "Emacs",            "",           NULL,       4,            0,           -1 },
+    { "st-256color",      "",           NULL,       0,            0,           -1 },
+    { "Alacritty",        "",           NULL,       0,            0,           -1 },
+    { "mpv",              "",           NULL,       0,            1,           -1 },
+    { "Xephyr",           "",           NULL,       0,            1,           -1 },
+    { "",                 "Xephyr",     NULL,       0,            1,           -1 },
+    { "Emulator",         "",           NULL,       0,            1,           -1 },
+    { "",                 "Emulator",   NULL,       0,            1,           -1 },
+    { "Brave-browser",    "",           NULL,       2,            0,           -1 },
+    { "nyxt",             "",           NULL,       2,            0,           -1 },
+    { "Tor Browser",      "",           NULL,       2,            0,           -1 },
+    { "Anki",             "",           NULL,       4,            0,           -1 },
+    { "transmission-gtk", "",           NULL,       4,            0,           -1 },
+    { "Transmission-gtk", "",           NULL,       4,            0,           -1 },
+
 };
 
 /* layout(s) */
@@ -61,7 +64,7 @@ static const Layout layouts[] = {
 	{ MODKEY|ControlMask|ShiftMask, KEY,      toggletag,      {.ui = 1 << TAG} },
 
 /* helper for spawning shell commands in the pre dwm-5.0 fashion */
-#define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
+#define SHCMD(cmd) { .v = (const char*[]){ "/bin/bash", "-c", cmd, NULL } }
 #define PrintScreenDWM    0x0000ff61
 
 #define  SCRIPTS_PATH       "$HOME/.local/bin/scripts/03_x/"
@@ -75,10 +78,11 @@ static const Layout layouts[] = {
 #define  DEVICES            MENU_PATH "04_devices.sh"
 #define  KERNEL             MENU_PATH "05_kernel.sh"
 #define  SCRIPTS            MENU_PATH "06_scripts.sh"
-#define  OTHER              MENU_PATH "07_other.sh"
+#define  SERVICES           MENU_PATH "07_services.sh"
 #define  CHANNELS           MENU_PATH "08_channels.sh"
 #define  MOUNT_DEVICES      MENU_PATH "09_mount_devices.sh"
 #define  UNMOUNT_DEVICES    MENU_PATH "10_unmount_devices.sh"
+#define  OTHERS             MENU_PATH "11_others.sh"
 #define  POWERMANAGER       MENU_PATH "99_power_manager.sh"
 
 /* commands */
@@ -100,10 +104,11 @@ static Key keys[] = {
   { MODKEY,            XK_F4,     spawn,          SHCMD(DEVICES)},
   { MODKEY,            XK_F5,     spawn,          SHCMD(KERNEL)},
   { MODKEY,            XK_F6,     spawn,          SHCMD(SCRIPTS)},
-  { MODKEY,            XK_F7,     spawn,          SHCMD(OTHER)},
+  { MODKEY,            XK_F7,     spawn,          SHCMD(SERVICES)},
   { MODKEY,            XK_F8,     spawn,          SHCMD(CHANNELS)},
   { MODKEY,            XK_F9,     spawn,          SHCMD(MOUNT_DEVICES)},
   { MODKEY,            XK_F10,    spawn,          SHCMD(UNMOUNT_DEVICES)},
+  { MODKEY,            XK_F11,    spawn,          SHCMD(OTHERS)},
   { 0,                 XF86XK_AudioMute,          spawn, SHCMD("amixer set Master toggle")},
   { 0,                 XF86XK_AudioRaiseVolume,   spawn, SHCMD("amixer set Master 5%+")},
   { 0,                 XF86XK_AudioLowerVolume,   spawn, SHCMD("amixer set Master 5%-")},
