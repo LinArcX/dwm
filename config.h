@@ -35,11 +35,11 @@ static const Rule rules[] = {
     { "Emulator",         "",           NULL,       0,            1,           -1 },
     { "",                 "Emulator",   NULL,       0,            1,           -1 },
     { "Brave-browser",    "",           NULL,       2,            0,           -1 },
-    { "nyxt",             "",           NULL,       2,            0,           -1 },
-    { "Tor Browser",      "",           NULL,       2,            0,           -1 },
+    { "nyxt",             "",           NULL,       4,            0,           -1 },
+    { "Tor Browser",      "",           NULL,       4,            0,           -1 },
     { "Anki",             "",           NULL,       4,            0,           -1 },
     { "transmission-gtk", "",           NULL,       4,            0,           -1 },
-    { "Transmission-gtk", "",           NULL,       4,            0,           -1 },
+    { "Zathura",          "",           NULL,       4,            0,           -1 },
 };
 
 /* layout(s) */
