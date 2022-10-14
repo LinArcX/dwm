@@ -82,6 +82,7 @@ static const Layout layouts[] = {
 #define  MOUNT_DEVICES      MENU_PATH "09_mount_devices.sh"
 #define  UNMOUNT_DEVICES    MENU_PATH "10_unmount_devices.sh"
 #define  OTHERS             MENU_PATH "11_others.sh"
+#define  BOOKS              MENU_PATH "12_books.sh"
 #define  POWERMANAGER       MENU_PATH "99_power_manager.sh"
 
 /* commands */
@@ -108,6 +109,7 @@ static Key keys[] = {
   { MODKEY,            XK_F9,                   spawn,     SHCMD(MOUNT_DEVICES)},
   { MODKEY,            XK_F10,                  spawn,     SHCMD(UNMOUNT_DEVICES)},
   { MODKEY,            XK_F11,                  spawn,     SHCMD(OTHERS)},
+  { MODKEY,            XK_F12,                  spawn,     SHCMD(BOOKS)},
   { 0,                 XF86XK_AudioMute,        spawn,     SHCMD("amixer set Master toggle")},
   { 0,                 XF86XK_AudioRaiseVolume, spawn,     SHCMD("amixer set Master 5%+")},
   { 0,                 XF86XK_AudioLowerVolume, spawn,     SHCMD("amixer set Master 5%-")},
