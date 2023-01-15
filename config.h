@@ -40,6 +40,9 @@ static const Rule rules[] = {
     { "Anki",             "",           NULL,       4,            0,           -1 },
     { "transmission-gtk", "",           NULL,       4,            0,           -1 },
     { "Zathura",          "",           NULL,       4,            0,           -1 },
+    { "Evince",           "",           NULL,       4,            0,           -1 },
+    { "microsoft teams - preview",           "",           NULL,       4,            0,           -1 },
+    { "Microsoft Teams - Preview",           "",           NULL,       4,            0,           -1 },
 };
 
 /* layout(s) */
