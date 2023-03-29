@@ -1389,7 +1389,7 @@ run(void)
 
 void
 runAutostart(void) {
-	system("cd ~/.local/bin/bar/x; ./autostart.sh &");
+	system("cd ~/VoidConf/home/.local/bin/bar/x; ./autostart.sh &");
 }
 
 void
