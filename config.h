@@ -41,6 +41,9 @@ static const Rule rules[] = {
     { "transmission-gtk", "",           NULL,       4,            0,           -1 },
     { "Zathura",          "",           NULL,       4,            0,           -1 },
     { "Evince",           "",           NULL,       4,            0,           -1 },
+    { "Foliate",           "",           NULL,       4,            0,           -1 },
+    { "Eclipse",           "",           NULL,       4,            0,           -1 },
+    { "com.github.johnfactotum.Foliate",           "",           NULL,       4,            0,           -1 },
     { "microsoft teams - preview",           "",           NULL,       4,            0,           -1 },
     { "Microsoft Teams - Preview",           "",           NULL,       4,            0,           -1 },
 };
@@ -69,11 +72,14 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/bash", "-c", cmd, NULL } }
 #define PrintScreenDWM    0x0000ff61
 
-#define  SCRIPTS_PATH       "$HOME/.local/bin/scripts/03_x/"
+#define  SCRIPTS_PATH       "$HOME/VoidConf/home/.local/bin/scripts/03_x/"
 #define  SCREENSHOT_FULL    SCRIPTS_PATH "screenshot_fullscreen.sh"
 #define  SCREENSHOT_REGION  SCRIPTS_PATH "screenshot_region.sh"
+#define  ALSATOGGLE         SCRIPTS_PATH "alsa_toggle.sh"
+#define  ALSA_DECREASE      SCRIPTS_PATH "alsa_decrease.sh"
+#define  ALSA_INCREASE      SCRIPTS_PATH "alsa_increase.sh"
 
-#define  MENU_PATH          "$HOME/.local/bin/menu/"
+#define  MENU_PATH          "$HOME/VoidConf/home/.local/bin/menu/"
 #define  PACKAGES           MENU_PATH "01_packages.sh"
 #define  PLACES             MENU_PATH "02_places.sh"
 #define  XBPS               MENU_PATH "03_xbps.sh"
@@ -113,9 +119,12 @@ static Key keys[] = {
   { MODKEY,            XK_F10,                  spawn,     SHCMD(UNMOUNT_DEVICES)},
   { MODKEY,            XK_F11,                  spawn,     SHCMD(OTHERS)},
   { MODKEY,            XK_F12,                  spawn,     SHCMD(BOOKS)},
-  { 0,                 XF86XK_AudioMute,        spawn,     SHCMD("amixer set Master toggle")},
-  { 0,                 XF86XK_AudioRaiseVolume, spawn,     SHCMD("amixer set Master 5%+")},
-  { 0,                 XF86XK_AudioLowerVolume, spawn,     SHCMD("amixer set Master 5%-")},
+  { 0,                 XF86XK_AudioMute,        spawn,     SHCMD(ALSATOGGLE)},
+  //{ 0,                 XF86XK_AudioMute,        spawn,     SHCMD("amixer set Master toggle")},
+  { 0,                 XF86XK_AudioRaiseVolume, spawn,     SHCMD(ALSA_INCREASE)},
+  //{ 0,                 XF86XK_AudioRaiseVolume, spawn,     SHCMD("amixer set Master 5%+")},
+  { 0,                 XF86XK_AudioLowerVolume, spawn,     SHCMD(ALSA_DECREASE)},
+  //{ 0,                 XF86XK_AudioLowerVolume, spawn,     SHCMD("amixer set Master 5%-")},
 	{ 0,                 XF86XK_AudioNext,        spawn,     SHCMD("mpc next") },
 	{ 0,                 XF86XK_AudioPrev,        spawn,     SHCMD("mpc prev") },
 	{ 0,                 XF86XK_AudioPause,       spawn,     SHCMD("mpc toggle") },
