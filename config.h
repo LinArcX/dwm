@@ -79,24 +79,24 @@ static const Layout layouts[] = {
 #define  ALSA_DECREASE      SCRIPTS_PATH "alsa_decrease.sh"
 #define  ALSA_INCREASE      SCRIPTS_PATH "alsa_increase.sh"
 
-#define  MENU_PATH          "$HOME/VoidConf/home/.local/bin/menu/"
-#define  PACKAGES           MENU_PATH "01_packages.sh"
-#define  PLACES             MENU_PATH "02_places.sh"
-#define  XBPS               MENU_PATH "03_xbps.sh"
-#define  DEVICES            MENU_PATH "04_devices.sh"
-#define  NETWORK            MENU_PATH "05_network.sh"
-#define  SCRIPTS            MENU_PATH "06_scripts.sh"
-#define  SERVICES           MENU_PATH "07_services.sh"
-#define  CHANNELS           MENU_PATH "08_channels.sh"
-#define  MOUNT_DEVICES      MENU_PATH "09_mount_devices.sh"
-#define  UNMOUNT_DEVICES    MENU_PATH "10_unmount_devices.sh"
-#define  OTHERS             MENU_PATH "11_others.sh"
-#define  BOOKS              MENU_PATH "12_books.sh"
-#define  POWERMANAGER       MENU_PATH "99_power_manager.sh"
+//#define  MENU_PATH          "$HOME/VoidConf/home/.local/bin/menu/"
+//#define  PACKAGES           MENU_PATH "01_packages.sh"
+//#define  PLACES             MENU_PATH "02_places.sh"
+//#define  XBPS               MENU_PATH "03_xbps.sh"
+//#define  DEVICES            MENU_PATH "04_devices.sh"
+//#define  NETWORK            MENU_PATH "05_network.sh"
+//#define  SCRIPTS            MENU_PATH "06_scripts.sh"
+//#define  SERVICES           MENU_PATH "07_services.sh"
+//#define  CHANNELS           MENU_PATH "08_channels.sh"
+//#define  MOUNT_DEVICES      MENU_PATH "09_mount_devices.sh"
+//#define  UNMOUNT_DEVICES    MENU_PATH "10_unmount_devices.sh"
+//#define  OTHERS             MENU_PATH "11_others.sh"
+//#define  BOOKS              MENU_PATH "12_books.sh"
+//#define  POWERMANAGER       MENU_PATH "99_power_manager.sh"
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-static const char *dmenucmd[] = { "sh", "-c", POWERMANAGER };
+//static const char *dmenucmd[] = { "sh", "-c", POWERMANAGER };
 static const char *termcmd[]  = { "alacritty", NULL };
 static const char *mutecmd[] = { "amixer", "-q", "sset", "Master", "toggle", NULL };
 static const char *volupcmd[] = { "amixer", "-q", "sset", "PCM", "5-", "unmute", NULL };
@@ -104,21 +104,21 @@ static const char *voldowncmd[] = { "amixer", "-q", "sset", "PCM", "5+", "unmute
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-  { MODKEY|ShiftMask,  XK_e,                    spawn,     SHCMD(POWERMANAGER)},
+  //{ MODKEY|ShiftMask,  XK_e,                    spawn,     SHCMD(POWERMANAGER)},
   { MODKEY,            XK_r,                    spawn,     SHCMD("alacritty -e open_lf_at_home.sh")},
   { MODKEY,            XK_Return,               spawn,     {.v = termcmd }},
-  { MODKEY,            XK_F1,                   spawn,     SHCMD(PACKAGES)},
-  { MODKEY,            XK_F2,                   spawn,     SHCMD(PLACES)},
-  { MODKEY,            XK_F3,                   spawn,     SHCMD(XBPS)},
-  { MODKEY,            XK_F4,                   spawn,     SHCMD(DEVICES)},
-  { MODKEY,            XK_F5,                   spawn,     SHCMD(NETWORK)},
-  { MODKEY,            XK_F6,                   spawn,     SHCMD(SCRIPTS)},
-  { MODKEY,            XK_F7,                   spawn,     SHCMD(SERVICES)},
-  { MODKEY,            XK_F8,                   spawn,     SHCMD(CHANNELS)},
-  { MODKEY,            XK_F9,                   spawn,     SHCMD(MOUNT_DEVICES)},
-  { MODKEY,            XK_F10,                  spawn,     SHCMD(UNMOUNT_DEVICES)},
-  { MODKEY,            XK_F11,                  spawn,     SHCMD(OTHERS)},
-  { MODKEY,            XK_F12,                  spawn,     SHCMD(BOOKS)},
+  //{ MODKEY,            XK_F1,                   spawn,     SHCMD(PACKAGES)},
+  //{ MODKEY,            XK_F2,                   spawn,     SHCMD(PLACES)},
+  //{ MODKEY,            XK_F3,                   spawn,     SHCMD(XBPS)},
+  //{ MODKEY,            XK_F4,                   spawn,     SHCMD(DEVICES)},
+  //{ MODKEY,            XK_F5,                   spawn,     SHCMD(NETWORK)},
+  //{ MODKEY,            XK_F6,                   spawn,     SHCMD(SCRIPTS)},
+  //{ MODKEY,            XK_F7,                   spawn,     SHCMD(SERVICES)},
+  //{ MODKEY,            XK_F8,                   spawn,     SHCMD(CHANNELS)},
+  //{ MODKEY,            XK_F9,                   spawn,     SHCMD(MOUNT_DEVICES)},
+  //{ MODKEY,            XK_F10,                  spawn,     SHCMD(UNMOUNT_DEVICES)},
+  //{ MODKEY,            XK_F11,                  spawn,     SHCMD(OTHERS)},
+  //{ MODKEY,            XK_F12,                  spawn,     SHCMD(BOOKS)},
   { 0,                 XF86XK_AudioMute,        spawn,     SHCMD(ALSATOGGLE)},
   //{ 0,                 XF86XK_AudioMute,        spawn,     SHCMD("amixer set Master toggle")},
   { 0,                 XF86XK_AudioRaiseVolume, spawn,     SHCMD(ALSA_INCREASE)},
