@@ -26,13 +26,12 @@ static const Rule rules[] = {
      *	WM_NAME(STRING) = title
      */
     /* class    instance      title       tags mask     isfloating   monitor */
-    { "Emacs",            "",           NULL,       4,            0,           -1 },
-    { "st-256color",      "",           NULL,       0,            0,           -1 },
     { "Alacritty",        "",           NULL,       0,            0,           -1 },
     { "mpv",              "",           NULL,       0,            1,           -1 },
     { "Xephyr",           "",           NULL,       0,            1,           -1 },
     { "",                 "Xephyr",     NULL,       0,            1,           -1 },
     { "Emulator",         "",           NULL,       0,            1,           -1 },
+    { "st-256color",      "",           NULL,       0,            0,           -1 },
     { "",                 "Emulator",   NULL,       0,            1,           -1 },
     { "Brave-browser",    "",           NULL,       2,            0,           -1 },
     { "nyxt",             "",           NULL,       4,            0,           -1 },
@@ -41,11 +40,12 @@ static const Rule rules[] = {
     { "transmission-gtk", "",           NULL,       4,            0,           -1 },
     { "Zathura",          "",           NULL,       4,            0,           -1 },
     { "Evince",           "",           NULL,       4,            0,           -1 },
-    { "Foliate",           "",           NULL,       4,            0,           -1 },
-    { "Eclipse",           "",           NULL,       4,            0,           -1 },
+    { "Foliate",          "",           NULL,       4,            0,           -1 },
+    { "Eclipse",          "",           NULL,       4,            0,           -1 },
+    { "Emacs",            "",           NULL,       4,            0,           -1 },
     { "com.github.johnfactotum.Foliate",           "",           NULL,       4,            0,           -1 },
-    { "microsoft teams - preview",           "",           NULL,       4,            0,           -1 },
-    { "Microsoft Teams - Preview",           "",           NULL,       4,            0,           -1 },
+    { "microsoft teams - preview",                 "",           NULL,       4,            0,           -1 },
+    { "Microsoft Teams - Preview",                 "",           NULL,       4,            0,           -1 },
 };
 
 /* layout(s) */
