@@ -32,18 +32,18 @@ static const Rule rules[] = {
     { "mpv",                              "",           NULL,       0,            1,           -1 },
     { "Xephyr",                           "",           NULL,       0,            1,           -1 },
     { "Emulator",                         "",           NULL,       0,            1,           -1 },
-    { "nyxt",                             "",           NULL,       4,            0,           -1 },
-    { "Tor Browser",                      "",           NULL,       4,            0,           -1 },
-    { "Anki",                             "",           NULL,       4,            0,           -1 },
-    { "Zathura",                          "",           NULL,       4,            0,           -1 },
-    { "Evince",                           "",           NULL,       4,            0,           -1 },
-    { "Foliate",                          "",           NULL,       4,            0,           -1 },
-    { "Eclipse",                          "",           NULL,       4,            0,           -1 },
-    { "com.github.johnfactotum.Foliate",  "",           NULL,       4,            0,           -1 },
+    { "Brave-browser",                    "",           NULL,       4,            0,           -1 },
+    { "nyxt",                             "",           NULL,       8,            0,           -1 },
+    { "Tor Browser",                      "",           NULL,       8,            0,           -1 },
+    { "Anki",                             "",           NULL,       8,            0,           -1 },
+    { "Zathura",                          "",           NULL,       8,            0,           -1 },
+    { "Evince",                           "",           NULL,       8,            0,           -1 },
+    { "Foliate",                          "",           NULL,       8,            0,           -1 },
+    { "Eclipse",                          "",           NULL,       8,            0,           -1 },
+    { "com.github.johnfactotum.Foliate",  "",           NULL,       8,            0,           -1 },
     //{ "Emacs",                            "",           NULL,       4,            0,           -1 },
     //{ "microsoft teams - preview",        "",           NULL,       4,            0,           -1 },
     //{ "Microsoft Teams - Preview",        "",           NULL,       4,            0,           -1 },
-    //{ "Brave-browser",                    "",           NULL,       5,            0,           -1 },
     //{ "st-256color",                      "",           NULL,       0,            0,           -1 },
     //{ "transmission-gtk",                 "",           NULL,       4,            0,           -1 },
 };
@@ -79,8 +79,8 @@ static const Layout layouts[] = {
 #define  ALSA_DECREASE      SCRIPTS_PATH "alsa_decrease.sh"
 #define  ALSA_INCREASE      SCRIPTS_PATH "alsa_increase.sh"
 
-//#define  MENU_PATH          "$HOME/VoidConf/home/.local/bin/menu/"
-//#define  PACKAGES           MENU_PATH "01_packages.sh"
+#define  MENU_PATH          "$HOME/VoidConf/home/.local/bin/menu/"
+#define  PACKAGES           MENU_PATH "01_packages.sh"
 //#define  PLACES             MENU_PATH "02_places.sh"
 //#define  XBPS               MENU_PATH "03_xbps.sh"
 //#define  DEVICES            MENU_PATH "04_devices.sh"
@@ -92,7 +92,7 @@ static const Layout layouts[] = {
 //#define  UNMOUNT_DEVICES    MENU_PATH "10_unmount_devices.sh"
 //#define  OTHERS             MENU_PATH "11_others.sh"
 //#define  BOOKS              MENU_PATH "12_books.sh"
-//#define  POWERMANAGER       MENU_PATH "99_power_manager.sh"
+#define  POWERMANAGER       MENU_PATH "99_power_manager.sh"
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
@@ -104,10 +104,10 @@ static const char *voldowncmd[] = { "amixer", "-q", "sset", "PCM", "5+", "unmute
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-  //{ MODKEY|ShiftMask,  XK_e,                    spawn,     SHCMD(POWERMANAGER)},
+  { MODKEY|ShiftMask,  XK_e,                    spawn,     SHCMD(POWERMANAGER)},
   { MODKEY,            XK_r,                    spawn,     SHCMD("alacritty -e open_lf_at_home.sh")},
   { MODKEY,            XK_Return,               spawn,     {.v = termcmd }},
-  //{ MODKEY,            XK_F1,                   spawn,     SHCMD(PACKAGES)},
+  { MODKEY,            XK_F1,                   spawn,     SHCMD(PACKAGES)},
   //{ MODKEY,            XK_F2,                   spawn,     SHCMD(PLACES)},
   //{ MODKEY,            XK_F3,                   spawn,     SHCMD(XBPS)},
   //{ MODKEY,            XK_F4,                   spawn,     SHCMD(DEVICES)},
