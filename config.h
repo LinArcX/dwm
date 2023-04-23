@@ -1,3 +1,4 @@
+#include "gaplessgrid.c"
 #include <X11/XF86keysym.h>
 
 /* appearance */
@@ -54,8 +55,11 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
-	{ "[M]",      monocle },
+	{ "[]=",     tile },    /* first entry is default */
+	{ "[M]",     monocle },
+  { "##",      gaplessgrid },
+  { "||",      bstack },
+  { "==",      bstackhoriz },
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 };
 
@@ -96,7 +100,7 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 //static const char *dmenucmd[] = { "sh", "-c", POWERMANAGER };
-//static const char *termcmd[]  = { "alacritty", NULL };
+static const char *termcmd[]  = { "alacritty", NULL };
 //static const char *termcmd[]  = { "alacritty", "--working-directory $PWD", NULL };
 //static const char *termcmd[]  = { "alacritty", "-e", "sh", "-c", "cd $(pwd) && exec sh", NULL };
 
@@ -148,7 +152,10 @@ static Key keys[] = {
   { MODKEY|ShiftMask,  XK_q,                    killclient,     {0} },
   { MODKEY,            XK_m,                    setlayout,      {.v = &layouts[0]} },
   { MODKEY,            XK_t,                    setlayout,      {.v = &layouts[1]} },
-  { MODKEY,            XK_f,                    setlayout,      {.v = &layouts[2]} },
+  { MODKEY,            XK_g,                    setlayout,      {.v = &layouts[2]} },
+  { MODKEY,            XK_u,                    setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,            XK_o,                    setlayout,      {.v = &layouts[4]} },
+  { MODKEY,            XK_f,                    setlayout,      {.v = &layouts[5]} },
   { MODKEY,            XK_space,                setlayout,      {0} },
   { MODKEY|ShiftMask,  XK_space,                togglefloating, {0} },
   { MODKEY,            XK_0,                    view,           {.ui = ~0 } },
