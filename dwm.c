@@ -237,6 +237,7 @@ static int xerrorstart(Display *dpy, XErrorEvent *ee);
 static void zoom(const Arg *arg);
 static void bstack(Monitor *m);
 static void bstackhoriz(Monitor *m);
+static void gaplessgrid(Monitor *m);
 
 /* variables */
 static const char broken[] = "broken";
@@ -2167,8 +2168,7 @@ main(int argc, char *argv[])
 	return EXIT_SUCCESS;
 }
 
-static void
-bstack(Monitor *m) {
+static void bstack(Monitor *m) {
 	int w, h, mh, mx, tx, ty, tw;
 	unsigned int i, n;
 	Client *c;
@@ -2199,8 +2199,7 @@ bstack(Monitor *m) {
 	}
 }
 
-static void
-bstackhoriz(Monitor *m) {
+static void bstackhoriz(Monitor *m) {
 	int w, mh, mx, tx, ty, th;
 	unsigned int i, n;
 	Client *c;
@@ -2225,6 +2224,42 @@ bstackhoriz(Monitor *m) {
 			resize(c, tx, ty, m->ww - (2 * c->bw), th - (2 * c->bw), 0);
 			if (th != m->wh)
 				ty += HEIGHT(c);
+		}
+	}
+}
+
+static void gaplessgrid(Monitor *m)
+{
+	unsigned int n, cols, rows, cn, rn, i, cx, cy, cw, ch;
+	Client *c;
+
+	for(n = 0, c = nexttiled(m->clients); c; c = nexttiled(c->next), n++) ;
+	if(n == 0)
+		return;
+
+	/* grid dimensions */
+	for(cols = 0; cols <= n/2; cols++)
+		if(cols*cols >= n)
+			break;
+	if(n == 5) /* set layout against the general calculation: not 1:2:2, but 2:3 */
+		cols = 2;
+	rows = n/cols;
+
+	/* window geometries */
+	cw = cols ? m->ww / cols : m->ww;
+	cn = 0; /* current column number */
+	rn = 0; /* current row number */
+	for(i = 0, c = nexttiled(m->clients); c; i++, c = nexttiled(c->next)) {
+		if(i/rows + 1 > cols - n%cols)
+			rows = n/cols + 1;
+		ch = rows ? m->wh / rows : m->wh;
+		cx = m->wx + cn*cw;
+		cy = m->wy + rn*ch;
+		resize(c, cx, cy, cw - 2 * c->bw, ch - 2 * c->bw, False);
+		rn++;
+		if(rn >= rows) {
+			rn = 0;
+			cn++;
 		}
 	}
 }
