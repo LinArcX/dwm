@@ -82,63 +82,43 @@ static const Layout layouts[] = {
 #define  ALSA_INCREASE      SCRIPTS_PATH "alsa_increase.sh"
 
 #define  MENU_PATH          "$HOME/VoidConf/home/.local/bin/menu/"
-#define  PACKAGES           MENU_PATH "01_packages.sh"
-//#define  PLACES             MENU_PATH "02_places.sh"
-//#define  XBPS               MENU_PATH "03_xbps.sh"
-//#define  DEVICES            MENU_PATH "04_devices.sh"
-//#define  NETWORK            MENU_PATH "05_network.sh"
-//#define  SCRIPTS            MENU_PATH "06_scripts.sh"
-//#define  SERVICES           MENU_PATH "07_services.sh"
-//#define  CHANNELS           MENU_PATH "08_channels.sh"
-//#define  MOUNT_DEVICES      MENU_PATH "09_mount_devices.sh"
-//#define  UNMOUNT_DEVICES    MENU_PATH "10_unmount_devices.sh"
-//#define  OTHERS             MENU_PATH "11_others.sh"
-#define  BOOKS              MENU_PATH "12_books.sh"
-#define  POWERMANAGER       MENU_PATH "99_power_manager.sh"
+#define  PROJECTS           MENU_PATH "projects.sh"
+#define  GUIAPPS            MENU_PATH "gui_apps.sh"
+#define  BOOKS              MENU_PATH "books.sh"
+#define  MOUNT_DEVICES      MENU_PATH "mount_devices.sh"
+#define  UNMOUNT_DEVICES    MENU_PATH "unmount_devices.sh"
+#define  POWERMANAGER       MENU_PATH "power_manager.sh"
 
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
-//static const char *dmenucmd[] = { "sh", "-c", POWERMANAGER };
 static const char *termcmd[]  = { "alacritty", NULL };
-//static const char *termcmd[]  = { "alacritty", "--working-directory $PWD", NULL };
-//static const char *termcmd[]  = { "alacritty", "-e", "sh", "-c", "cd $(pwd) && exec sh", NULL };
-
 static const char *mutecmd[] = { "amixer", "-q", "sset", "Master", "toggle", NULL };
 static const char *volupcmd[] = { "amixer", "-q", "sset", "PCM", "5-", "unmute", NULL };
 static const char *voldowncmd[] = { "amixer", "-q", "sset", "PCM", "5+", "unmute", NULL };
 
 static Key keys[] = {
 	/* modifier                     key        function        argument */
-  { MODKEY|ShiftMask,  XK_e,                    spawn,     SHCMD(POWERMANAGER)},
   { MODKEY,            XK_r,                    spawn,     SHCMD("alacritty -e open_lf_at_home.sh")},
   { MODKEY,            XK_Return,               spawn,     SHCMD("cd $(xcwd); exec alacritty")},
-  //{ MODKEY,            XK_Return,               spawn,     {.v = termcmd }},
-  //{ MODKEY,            XK_Return,               spawn,     SHCMD("alacritty --working-directory $PWD")},
-  //{ MODKEY,            XK_Return,               spawn,     SHCMD("export mdir=$PWD; alacritty --working-directory $mdir -e bash -c 'echo $mdir && exec bash'")},
-  { MODKEY,            XK_F1,                   spawn,     SHCMD(PACKAGES)},
-  //{ MODKEY,            XK_F2,                   spawn,     SHCMD(PLACES)},
-  //{ MODKEY,            XK_F3,                   spawn,     SHCMD(XBPS)},
-  //{ MODKEY,            XK_F4,                   spawn,     SHCMD(DEVICES)},
-  //{ MODKEY,            XK_F5,                   spawn,     SHCMD(NETWORK)},
-  //{ MODKEY,            XK_F6,                   spawn,     SHCMD(SCRIPTS)},
-  //{ MODKEY,            XK_F7,                   spawn,     SHCMD(SERVICES)},
-  //{ MODKEY,            XK_F8,                   spawn,     SHCMD(CHANNELS)},
-  //{ MODKEY,            XK_F9,                   spawn,     SHCMD(MOUNT_DEVICES)},
-  //{ MODKEY,            XK_F10,                  spawn,     SHCMD(UNMOUNT_DEVICES)},
-  //{ MODKEY,            XK_F11,                  spawn,     SHCMD(OTHERS)},
-  { MODKEY,            XK_F12,                  spawn,     SHCMD(BOOKS)},
+
+  { MODKEY|ShiftMask,  XK_p,                    spawn,     SHCMD(PROJECTS)},
+  { MODKEY|ShiftMask,  XK_g,                    spawn,     SHCMD(GUIAPPS)},
+  { MODKEY|ShiftMask,  XK_b,                    spawn,     SHCMD(BOOKS)},
+  { MODKEY|ShiftMask,  XK_m,                    spawn,     SHCMD(MOUNT_DEVICES)},
+  { MODKEY|ShiftMask,  XK_u,                    spawn,     SHCMD(UNMOUNT_DEVICES)},
+  { MODKEY|ShiftMask,  XK_e,                    spawn,     SHCMD(POWERMANAGER)},
+
   { 0,                 XF86XK_AudioMute,        spawn,     SHCMD(ALSATOGGLE)},
-  //{ 0,                 XF86XK_AudioMute,        spawn,     SHCMD("amixer set Master toggle")},
   { 0,                 XF86XK_AudioRaiseVolume, spawn,     SHCMD(ALSA_INCREASE)},
-  //{ 0,                 XF86XK_AudioRaiseVolume, spawn,     SHCMD("amixer set Master 5%+")},
   { 0,                 XF86XK_AudioLowerVolume, spawn,     SHCMD(ALSA_DECREASE)},
-  //{ 0,                 XF86XK_AudioLowerVolume, spawn,     SHCMD("amixer set Master 5%-")},
 	{ 0,                 XF86XK_AudioNext,        spawn,     SHCMD("mpc next") },
 	{ 0,                 XF86XK_AudioPrev,        spawn,     SHCMD("mpc prev") },
 	{ 0,                 XF86XK_AudioPause,       spawn,     SHCMD("mpc toggle") },
 	{ 0,                 XF86XK_AudioPlay,        spawn,     SHCMD("mpc toggle") },
+
   { 0,                 PrintScreenDWM,          spawn,     SHCMD(SCREENSHOT_FULL)},
   { MODKEY,            PrintScreenDWM,          spawn,     SHCMD(SCREENSHOT_REGION)},
+
   { MODKEY,            XK_b,                    togglebar,      {0} },
   { MODKEY,            XK_j,                    focusstack,     {.i = +1 } },
   { MODKEY,            XK_k,                    focusstack,     {.i = -1 } },
@@ -149,6 +129,7 @@ static Key keys[] = {
   { MODKEY,            XK_Return,               zoom,           {0} },
   { MODKEY,            XK_Tab,                  view,           {0} },
   { MODKEY|ShiftMask,  XK_q,                    killclient,     {0} },
+
   { MODKEY,            XK_t,                    setlayout,      {.v = &layouts[0]} },
   { MODKEY,            XK_m,                    setlayout,      {.v = &layouts[1]} },
   { MODKEY,            XK_g,                    setlayout,      {.v = &layouts[2]} },
@@ -157,12 +138,14 @@ static Key keys[] = {
   { MODKEY,            XK_f,                    setlayout,      {.v = &layouts[5]} },
   { MODKEY,            XK_space,                setlayout,      {0} },
   { MODKEY|ShiftMask,  XK_space,                togglefloating, {0} },
+
   { MODKEY,            XK_0,                    view,           {.ui = ~0 } },
   { MODKEY|ShiftMask,  XK_0,                    tag,            {.ui = ~0 } },
   { MODKEY,            XK_comma,                focusmon,       {.i = -1 } },
   { MODKEY,            XK_period,               focusmon,       {.i = +1 } },
   { MODKEY|ShiftMask,  XK_comma,                tagmon,         {.i = -1 } },
   { MODKEY|ShiftMask,  XK_period,               tagmon,         {.i = +1 } },
+
   TAGKEYS(             XK_1,                      0)
   TAGKEYS(             XK_2,                      1)
   TAGKEYS(             XK_3,                      2)
