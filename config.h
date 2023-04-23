@@ -32,20 +32,19 @@ static const Rule rules[] = {
     { "mpv",                              "",           NULL,       0,            1,           -1 },
     { "Xephyr",                           "",           NULL,       0,            1,           -1 },
     { "Emulator",                         "",           NULL,       0,            1,           -1 },
-    { "Brave-browser",                    "",           NULL,       4,            0,           -1 },
+    { "Brave-browser",                    "",           NULL,       2,            0,           -1 },
+    { "Zathura",                          "",           NULL,       4,            0,           -1 },
+    { "Evince",                           "",           NULL,       4,            0,           -1 },
+    { "Foliate",                          "",           NULL,       4,            0,           -1 },
+    { "transmission-gtk",                 "",           NULL,       4,            0,           -1 },
     { "nyxt",                             "",           NULL,       8,            0,           -1 },
     { "Tor Browser",                      "",           NULL,       8,            0,           -1 },
     { "Anki",                             "",           NULL,       8,            0,           -1 },
-    { "Zathura",                          "",           NULL,       8,            0,           -1 },
-    { "Evince",                           "",           NULL,       8,            0,           -1 },
-    { "Foliate",                          "",           NULL,       8,            0,           -1 },
     { "Eclipse",                          "",           NULL,       8,            0,           -1 },
     { "com.github.johnfactotum.Foliate",  "",           NULL,       8,            0,           -1 },
     //{ "Emacs",                            "",           NULL,       4,            0,           -1 },
-    //{ "microsoft teams - preview",        "",           NULL,       4,            0,           -1 },
     //{ "Microsoft Teams - Preview",        "",           NULL,       4,            0,           -1 },
     //{ "st-256color",                      "",           NULL,       0,            0,           -1 },
-    //{ "transmission-gtk",                 "",           NULL,       4,            0,           -1 },
 };
 
 /* layout(s) */
@@ -55,8 +54,8 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[M]",      monocle },
 	{ "[]=",      tile },    /* first entry is default */
+	{ "[M]",      monocle },
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 };
 
@@ -97,7 +96,10 @@ static const Layout layouts[] = {
 /* commands */
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 //static const char *dmenucmd[] = { "sh", "-c", POWERMANAGER };
-static const char *termcmd[]  = { "alacritty", NULL };
+//static const char *termcmd[]  = { "alacritty", NULL };
+//static const char *termcmd[]  = { "alacritty", "--working-directory $PWD", NULL };
+//static const char *termcmd[]  = { "alacritty", "-e", "sh", "-c", "cd $(pwd) && exec sh", NULL };
+
 static const char *mutecmd[] = { "amixer", "-q", "sset", "Master", "toggle", NULL };
 static const char *volupcmd[] = { "amixer", "-q", "sset", "PCM", "5-", "unmute", NULL };
 static const char *voldowncmd[] = { "amixer", "-q", "sset", "PCM", "5+", "unmute", NULL };
@@ -106,7 +108,10 @@ static Key keys[] = {
 	/* modifier                     key        function        argument */
   { MODKEY|ShiftMask,  XK_e,                    spawn,     SHCMD(POWERMANAGER)},
   { MODKEY,            XK_r,                    spawn,     SHCMD("alacritty -e open_lf_at_home.sh")},
-  { MODKEY,            XK_Return,               spawn,     {.v = termcmd }},
+  { MODKEY,            XK_Return,               spawn,     SHCMD("cd $(xcwd); exec alacritty")},
+  //{ MODKEY,            XK_Return,               spawn,     {.v = termcmd }},
+  //{ MODKEY,            XK_Return,               spawn,     SHCMD("alacritty --working-directory $PWD")},
+  //{ MODKEY,            XK_Return,               spawn,     SHCMD("export mdir=$PWD; alacritty --working-directory $mdir -e bash -c 'echo $mdir && exec bash'")},
   { MODKEY,            XK_F1,                   spawn,     SHCMD(PACKAGES)},
   //{ MODKEY,            XK_F2,                   spawn,     SHCMD(PLACES)},
   //{ MODKEY,            XK_F3,                   spawn,     SHCMD(XBPS)},
