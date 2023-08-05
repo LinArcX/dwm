@@ -33,6 +33,7 @@ static const Rule rules[] = {
     { "Xephyr",                           "",           NULL,       0,            1,           -1 },
     { "Emulator",                         "",           NULL,       0,            1,           -1 },
     { "Brave-browser",                    "",           NULL,       2,            0,           -1 },
+    { "Emacs",                            "",           NULL,       4,            0,           -1 },
     { "Zathura",                          "",           NULL,       4,            0,           -1 },
     { "Evince",                           "",           NULL,       4,            0,           -1 },
     { "Foliate",                          "",           NULL,       4,            0,           -1 },
@@ -43,7 +44,6 @@ static const Rule rules[] = {
     { "Tor Browser",                      "",           NULL,       8,            0,           -1 },
     { "Eclipse",                          "",           NULL,       8,            0,           -1 },
     { "com.github.johnfactotum.Foliate",  "",           NULL,       8,            0,           -1 },
-    //{ "Emacs",                            "",           NULL,       4,            0,           -1 },
     //{ "Microsoft Teams - Preview",        "",           NULL,       4,            0,           -1 },
     //{ "st-256color",                      "",           NULL,       0,            0,           -1 },
 };
