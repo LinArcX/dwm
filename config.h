@@ -35,7 +35,7 @@ static const Rule rules[] = {
     { "qutebrowser",                      "",           NULL,       2,            0,           -1 },
     { "Brave-browser",                    "",           NULL,       2,            0,           -1 },
     { "Zathura",                          "",           NULL,       4,            0,           -1 },
-    { "Anki",                             "",           NULL,       8,            0,           -1 },
+    { "Anki",                             "",           NULL,       4,            0,           -1 },
     { "Tor Browser",                      "",           NULL,       8,            0,           -1 },
     //{ "Emacs",                            "",           NULL,       4,            0,           -1 },
     //{ "Evince",                           "",           NULL,       4,            0,           -1 },
