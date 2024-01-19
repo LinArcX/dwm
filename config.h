@@ -39,6 +39,8 @@ static const Rule rules[] = {
     { "Fritzing",                         "",           NULL,       4,            0,           -1 },
     { "musescore",                        "",           NULL,       4,            0,           -1 },
     { "MuseScore3",                       "",           NULL,       4,            0,           -1 },
+    { "qBittorrent",                      "",           NULL,       4,            0,           -1 },
+    { "qbittorrent",                      "",           NULL,       4,            0,           -1 },
     { "sun-awt-X11-XFramePeer",           "",           NULL,       4,            0,           -1 },
     { "de-neemann-digital-gui-Main",      "",           NULL,       4,            0,           -1 },
     { "CPUEmulatorMain",                  "",           NULL,       4,            0,           -1 },
@@ -48,6 +50,8 @@ static const Rule rules[] = {
     { "Fritzing-bin",                     "",           NULL,       4,            0,           -1 },
     { "com-cburch-logisim-Main",          "",           NULL,       4,            0,           -1 },
     { "Tor Browser",                      "",           NULL,       8,            0,           -1 },
+
+  
 
     //{ "Emacs",                            "",           NULL,       4,            0,           -1 },
     //{ "Evince",                           "",           NULL,       4,            0,           -1 },
