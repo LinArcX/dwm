@@ -1,4 +1,4 @@
-# dwm - dynamic window manager ![Language](https://img.shields.io/github/languages/top/LinArcX/dwm.svg?style=flat-square) ![RepoSize](https://img.shields.io/github/repo-size/LinArcX/dwm.svg?style=flat-square) ![Latest Tag](https://img.shields.io/github/tag/LinArcX/dwm.svg?colorB=green&style=flat-square)
+# dwm - dynamic window manager 
 dwm is an extremely fast, small, and dynamic window manager for X.
 
 ## Requirements
@@ -6,9 +6,6 @@ In order to build this fork of dwm, you need:
 - libX11-devel
 - libXft-devel
 - curl
-- jcal
-- rofi
-- feh
 - xsetroot
 - numlockx
 - setxkbmap
@@ -75,6 +72,3 @@ E-Mail:linarcx@gmail.com
 	<img width="200" src="./dwm.png" alt="dwm">
 	<br>
 </h1>
-
-## License
-![License](https://img.shields.io/github/license/LinArcX/Gnulium.svg?style=flat-square)

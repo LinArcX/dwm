@@ -51,8 +51,6 @@ static const Rule rules[] = {
     { "com-cburch-logisim-Main",          "",           NULL,       4,            0,           -1 },
     { "Tor Browser",                      "",           NULL,       8,            0,           -1 },
 
-  
-
     //{ "Emacs",                            "",           NULL,       4,            0,           -1 },
     //{ "Evince",                           "",           NULL,       4,            0,           -1 },
     //{ "Foliate",                          "",           NULL,       4,            0,           -1 },
